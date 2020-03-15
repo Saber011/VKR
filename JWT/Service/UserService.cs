@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace JWT.Service
 {
-    public interface IUserService
-    {
-         User GetById(int id);
-        User Create(User user, string password);
-        Task DeleteAsync(int id);
-    }
+
+
     public class UserService : IUserService
     {
         private ApplicationContext _context;
@@ -21,7 +17,6 @@ namespace JWT.Service
             _context = context;
         }
 
-      
 
         public User Create(User user, string password)
         {  // validation
@@ -38,6 +33,7 @@ namespace JWT.Service
             user.PasswordSalt = passwordSalt;
 
             _context.Users.Add(user);
+            _context.UserRoles.Add(new UserRoles { IdUser = user.Id, IdRoles=1 });
             _context.SaveChanges();
 
             return user;

@@ -10,10 +10,16 @@ namespace JWT.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<UserTeams> UserTeams {get;set;}
+        public DbSet<UserRoles> UserRoles { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
             Database.EnsureCreated();
         }
+        // use Fluent API
+
     }
 }

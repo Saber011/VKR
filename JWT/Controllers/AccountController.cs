@@ -17,7 +17,7 @@ namespace JWT.Controllers
     {
         private ApplicationContext db;
         private IUserService _userService;
-        public AccountController(IUserService userService, ApplicationContext context)
+        public AccountController(ApplicationContext context, IUserService userService)
         {
             _userService = userService;
             db = context;
@@ -74,13 +74,17 @@ namespace JWT.Controllers
 
         private ClaimsIdentity GetIdentity(string username, string password)
         {
-            User person = db.Users.FirstOrDefault(x => x.Login == username && x.Password == password);
+            User person = db.Users.FirstOrDefault(x => x.Login == username/* && x.Password == password*/); // переписать этот метод
+            
+           
+            var firstUserRoles = db.UserRoles.FirstOrDefault(x => x.IdUser == person.Id);
+            var roles = db.Roles.FirstOrDefault(x => x.Id == firstUserRoles.IdRoles);
             if (person != null)
             {
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, db.Roles.Find(person.Role).Roles)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.Roles)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
