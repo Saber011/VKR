@@ -9,10 +9,10 @@ namespace JWT.Models
     public class Level3
     {
         public int Id { get; set; }
-        public string D { get; set; }
-        public string E { get; set; }
-        public string F { get; set; }
-        public string G { get; set; }
+        public int D { get; set; }
+        public int E { get; set; }
+        public int F { get; set; }
+        public int G { get; set; }
 
     }
 }

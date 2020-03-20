@@ -10,6 +10,6 @@ namespace JWT.Models
     {
         [Key]
         public int Id { get; set; }
-        public string A { get; set; }
+        public int A { get; set; }
     }
 }
