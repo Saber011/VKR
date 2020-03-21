@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class Team
+    public class Level2
     {
         [Key]
-        public int IdTeam { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string TeamName { get; set; }
-        public int CapId { get; set; }
-        public int CoachId { get; set; }
+        public int B { get; set; }
+        [Required]
+        public int C { get; set; }
         [ForeignKey("IdUser")]
-        public User User  { get; set; }
+        public User User { get; set; }
     }
 }

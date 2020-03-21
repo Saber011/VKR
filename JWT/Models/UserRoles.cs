@@ -10,6 +10,7 @@ namespace JWT.Models
     {
         [Key]
         public int IdUser { get; set; }
+        [Required]
         public int IdRoles { get; set; }
        
     }

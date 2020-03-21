@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class Role
+    public class Topics
     {
-       [Key]
-       public int Id { get; set; }
-       [Required]
-       public string NameRole { get; set; }
+        [Key]
+        public int IdTopic { get; set; }
+        public int IdLevel { get; set; }
     }
 }

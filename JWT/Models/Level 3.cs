@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class User
+    public class Level3
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(25)]
-        public string Login { get; set; }
+        public int D { get; set; }
         [Required]
-        [MaxLength(32)]
-        public string Password { get; set; }
+        public int E { get; set; }
         [Required]
-        public byte[] PasswordHash { get; set; }
+        public int F { get; set; }
         [Required]
-        public byte[] PasswordSalt { get; set; }
+        public int G { get; set; }
+        [ForeignKey("IdUser")]
+        public User User { get; set; }
+
     }
 }

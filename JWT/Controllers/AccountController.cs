@@ -84,7 +84,7 @@ namespace JWT.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.Roles)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.NameRole)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
