@@ -11,15 +11,13 @@ namespace JWT.Models
     {
         [Key]
         public int IdTask { get; set; }
-        public int IdTopic { get; set; }
+        public int TopicsId { get; set; }
         [Required]
         public int Level { get; set; }
         [Required]
         public string TextTask { get; set; }
         [Required]
-        public string AnswerTask { get; set; }
-       
-        [ForeignKey("IdTopic")]
-        public Topics Topic { get; set; }
+        public string AnswerTask { get; set; }       
+        public Topics Topics { get; set; }
     }
 }

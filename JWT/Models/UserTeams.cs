@@ -9,7 +9,10 @@ namespace JWT.Models
     public class UserTeams
     {
         [Key]
-        public int IdTeam { get; set; }
-        public int IdUser { get; set; }
+        public int UserTeamId { get; set; }
+        public int TeamIdTeam { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public Team Team { get; set; }
     }
 }

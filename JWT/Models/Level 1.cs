@@ -10,10 +10,9 @@ namespace JWT.Models
     public class Level1
     {
         [Key]
-        public int Id { get; set; }
+        public int Level1Id { get; set; }
         [Required]
         public int A { get; set; }
-    
         public User User { get; set; }
     }
 }

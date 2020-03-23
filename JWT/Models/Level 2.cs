@@ -10,12 +10,11 @@ namespace JWT.Models
     public class Level2
     {
         [Key]
-        public int Id { get; set; }
+        public int Level2Id { get; set; }
         [Required]
         public int B { get; set; }
         [Required]
         public int C { get; set; }
-        [ForeignKey("IdUser")]
         public User User { get; set; }
     }
 }

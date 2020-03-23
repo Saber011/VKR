@@ -10,7 +10,7 @@ namespace JWT.Models
     public class Level3
     {
         [Key]
-        public int Id { get; set; }
+        public int Level3Id { get; set; }
         [Required]
         public int D { get; set; }
         [Required]
@@ -18,8 +18,7 @@ namespace JWT.Models
         [Required]
         public int F { get; set; }
         [Required]
-        public int G { get; set; }
-        [ForeignKey("IdUser")]
+        public int G { get; set; }        
         public User User { get; set; }
 
     }
