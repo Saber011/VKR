@@ -63,8 +63,8 @@ namespace JWT
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "ToDo API",
+                    Version = "0.1",
+                    Title = "API",
                     Description = "A simple example ASP.NET Core Web API",
                     
                 });
@@ -75,9 +75,18 @@ namespace JWT
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddAuthentication()
+        .AddGoogle(options =>
+        {
+            IConfigurationSection googleAuthNSection =
+                Configuration.GetSection("Authentication:Google");
 
+            options.ClientId = Configuration["Authentication:Google:ClientId"];
+            options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+        });
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITeamService, TeamService>();
         }
 
 

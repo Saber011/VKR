@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JWT.Service
 {
-    public class TeamService : ITeamService
+    interface ITeamService
     {
     }
 }
