@@ -14,8 +14,7 @@ namespace JWT.Models
         [Required]
         public string TeamName { get; set; }
         public int CapId { get; set; }
-        public int CoachId { get; set; }
-        [ForeignKey("IdUser")]
+        public int CoachId { get; set; }       
         public User User  { get; set; }
     }
 }
