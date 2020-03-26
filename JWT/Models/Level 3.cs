@@ -19,7 +19,6 @@ namespace JWT.Models
         public int F { get; set; }
         [Required]
         public int G { get; set; }        
-        public User User { get; set; }
 
     }
 }

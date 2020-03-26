@@ -25,7 +25,6 @@ namespace JWT.Controllers
 
 
         [HttpPost("/token")]
-
         public IActionResult Token(string username, string password)
         {
             var identity = GetIdentity(username, password);

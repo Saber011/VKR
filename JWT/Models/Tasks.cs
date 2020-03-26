@@ -18,6 +18,5 @@ namespace JWT.Models
         public string TextTask { get; set; }
         [Required]
         public string AnswerTask { get; set; }       
-        public Topics Topics { get; set; }
     }
 }

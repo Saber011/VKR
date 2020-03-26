@@ -13,7 +13,5 @@ namespace JWT.Models
         public int UserId { get; set; }
         [Required]
         public int RoleIdRole { get; set; }
-        public User User { get; set; }
-        public Role Role { get; set; }
     }
 }

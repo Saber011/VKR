@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace JWT.Service
 {
 
-
+    /// <inheritdoc/>
     public class UserService : IUserService
     {
         private ApplicationContext _context;
@@ -17,7 +17,7 @@ namespace JWT.Service
             _context = context;
         }
 
-
+        /// <inheritdoc/>
         public User Create(User user, string password)
         {  // validation
             if (string.IsNullOrWhiteSpace(password))
@@ -39,6 +39,7 @@ namespace JWT.Service
             return user;
         }
 
+        /// <inheritdoc/>
         public async Task DeleteAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -49,15 +50,11 @@ namespace JWT.Service
             }
         }
 
-      
-
+        /// <inheritdoc/>
         public User GetById(int id)
         {
             return _context.Users.Find(id);
         }
-
-        
-
 
         // private helper methods
 
@@ -91,17 +88,6 @@ namespace JWT.Service
 
             return true;
         }
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
