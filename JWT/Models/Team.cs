@@ -15,6 +15,5 @@ namespace JWT.Models
         public string TeamName { get; set; }
         public int CapId { get; set; }
         public int CoachId { get; set; }       
-        public User User  { get; set; }
     }
 }

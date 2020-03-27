@@ -11,6 +11,5 @@ namespace JWT.Models
         [Key]
         public int IdTopic { get; set; }
         public int LevelsIdLevel { get; set; }
-        public Levels Levels { get; set; }
     }
 }
