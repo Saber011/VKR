@@ -25,7 +25,6 @@ namespace JWT.Controllers
 
 
         [HttpPost("/token")]
-
         public IActionResult Token(string username, string password)
         {
             var identity = GetIdentity(username, password);
@@ -77,14 +76,14 @@ namespace JWT.Controllers
             User person = db.Users.FirstOrDefault(x => x.Login == username/* && x.Password == password*/); // переписать этот метод
             
            
-            var firstUserRoles = db.UserRoles.FirstOrDefault(x => x.IdUser == person.Id);
-            var roles = db.Roles.FirstOrDefault(x => x.Id == firstUserRoles.IdRoles);
+            var firstUserRoles = db.UserRoles.FirstOrDefault(x => x.UserId== person.Id);
+            var roles = db.Roles.FirstOrDefault(x => x.IdRole == firstUserRoles.RoleIdRole);
             if (person != null)
             {
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.Roles)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.NameRole)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

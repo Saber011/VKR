@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class UserTeams
+    public class Levels
     {
         [Key]
-        public int UserTeamId { get; set; }
-        public int TeamIdTeam { get; set; }
-        public int UserId { get; set; }
+        public int IdLevel { get; set; }
+        [Required]
+        public string LevelName { get; set; }
     }
 }

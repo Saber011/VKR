@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class UserTeams
+    public class Level1
     {
         [Key]
-        public int UserTeamId { get; set; }
-        public int TeamIdTeam { get; set; }
-        public int UserId { get; set; }
+        public int Level1Id { get; set; }
+        [Required]
+        public int A { get; set; }
     }
 }

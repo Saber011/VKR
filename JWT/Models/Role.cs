@@ -9,9 +9,8 @@ namespace JWT.Models
     public class Role
     {
        [Key]
-       public int Id { get; set; }
-       public string Roles { get; set; }
-        
-
+       public int IdRole { get; set; }
+       [Required]
+       public string NameRole { get; set; }
     }
 }

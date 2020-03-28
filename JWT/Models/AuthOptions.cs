@@ -17,7 +17,5 @@ namespace JWT.Models
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
         }
-
-
     }
 }
