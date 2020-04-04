@@ -32,6 +32,8 @@ namespace JWT.Models
             modelBuilder.Entity<Role>().HasAlternateKey(u => u.NameRole);
             modelBuilder.Entity<Levels>().HasAlternateKey(u => u.LevelName);
 
+            modelBuilder.Entity<UserRoles>().Property(u => u.RoleIdRole).HasDefaultValue(1);
+
         }
 
     }

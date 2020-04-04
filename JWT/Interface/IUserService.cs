@@ -33,5 +33,7 @@ namespace JWT.Service
         /// <param name="id"></param>
         /// <returns></returns>
         Task DeleteAsync(int id);
+
+
     }
 }

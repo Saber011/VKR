@@ -65,7 +65,7 @@ namespace JWT
                 {
                     Version = "0.1",
                     Title = "API",
-                    Description = "A simple example ASP.NET Core Web API",
+                    Description = "ASP.NET Core Web API ",
                     
                 });
 
@@ -87,6 +87,7 @@ namespace JWT
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IContextService, ContextService>();
         }
 
 
