@@ -91,7 +91,7 @@ namespace JWT.Controllers
             for (int i = 0; i < 20; i++)
                 if (hashBytes[i + 16] != hash[i])
                     throw new AppException("Invalid username or password");
-            if (person != null && SecurePasswordHasher.VerifayHash(password))
+            if (person != null)
                 {
                     var firstUserRoles = db.UserRoles.FirstOrDefault(x => x.UserId == person.Id);
                     var roles = db.Roles.FirstOrDefault(x => x.IdRole == firstUserRoles.RoleIdRole);
