@@ -29,7 +29,6 @@ namespace JWT.Controllers
       public TeamsController(ITeamService teamService) =>
             _teamsService = teamService;
 
-
         /// <summary>
         /// Получить все команды
         /// </summary>
@@ -40,7 +39,6 @@ namespace JWT.Controllers
         {
             return _teamsService.AllTeams();
         }
-
 
         /// <summary>
         /// Получить команду по ее id
