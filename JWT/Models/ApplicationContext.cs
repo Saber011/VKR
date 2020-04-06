@@ -32,8 +32,14 @@ namespace JWT.Models
             modelBuilder.Entity<Role>().HasAlternateKey(u => u.NameRole);
             modelBuilder.Entity<Levels>().HasAlternateKey(u => u.LevelName);
 
-            modelBuilder.Entity<UserRoles>().Property(u => u.RoleIdRole).HasDefaultValue(1);
-
+            modelBuilder.Entity<UserRoles>().Property(u => u.RoleIdRole).HasDefaultValue(1); //Создание дефолтных значений
+            modelBuilder.Entity<Level1>().Property(u => u.A).HasDefaultValue(0);
+            modelBuilder.Entity<Level2>().Property(u => u.B).HasDefaultValue(0);
+            modelBuilder.Entity<Level2>().Property(u => u.C).HasDefaultValue(0);
+            modelBuilder.Entity<Level3>().Property(u => u.D).HasDefaultValue(0);
+            modelBuilder.Entity<Level3>().Property(u => u.E).HasDefaultValue(0);
+            modelBuilder.Entity<Level3>().Property(u => u.F).HasDefaultValue(0);
+            modelBuilder.Entity<Level3>().Property(u => u.G).HasDefaultValue(0);
         }
 
     }
