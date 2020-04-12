@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JWT.Models
 {
-    public class Tasks
+    public class Exercises
     {
         [Key]
         public int IdTask { get; set; }
