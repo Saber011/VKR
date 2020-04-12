@@ -75,15 +75,7 @@ namespace JWT
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddAuthentication()
-        .AddGoogle(options =>
-        {
-            IConfigurationSection googleAuthNSection =
-                Configuration.GetSection("Authentication:Google");
-
-            options.ClientId = Configuration["Authentication:Google:ClientId"];
-            options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-        });
+            
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITeamService, TeamService>();
