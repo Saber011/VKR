@@ -12,44 +12,54 @@ namespace JWT.Service
     public interface IContextService
     {
         /// <summary>
-        /// Поиск всех задачи
+        /// Получить все задачи
         /// </summary>
-        /// <returns></returns>
-        Task<Tasks> GetAll();
+        List<Exercises> GetAll();
 
         /// <summary>
         /// Поиск по id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
-        Task<Tasks> GetById(int id);
+        Exercises GetById(int id);
 
         /// <summary>
         /// Создание задачи
         /// </summary>
-        /// <param name="tasks"></param>
-        /// <returns></returns>
-        Tasks Create(Tasks tasks);
+        /// <param name="exercises"></param>
+        Task Create(Exercises exercises);
 
         /// <summary>
         /// Удаление задачи
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
-         Task DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
         /// <summary>
         /// Редактирование задачи
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task EditAsync(int id);
+        /// <param name="exercises"></param>
+        Task EditAsync(Exercises exercises);
 
         /// <summary>
         /// Получить следующую задачу для пользователя
         /// </summary>
         /// <param name="id"></param>
+         Task<Exercises> GetNextTask(int id);
+
+        /// <summary>
+        /// Получить все задачи по категории
+        /// </summary>
+        /// <param name="id"></param>
+        Task<Exercises> GetAllIssuesAcategory(int id);
+
+
+        /// <summary>
+        /// Проверить верность ответа на задачу
+        /// </summary>
+        /// <param name="id">Id задачи </param>
+        /// <param name="userAnswer">Пользовательские ответы</param>
         /// <returns></returns>
-         Task<Tasks> GetNextTask(int id);
+        bool GetAnswer(int id, string userAnswer);
+
     }
 }

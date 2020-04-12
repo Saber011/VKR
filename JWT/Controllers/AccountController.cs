@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace JWT.Controllers
 {
+    [Route("api/Account")]
     public class AccountController : Controller
     {
         private ApplicationContext db;
@@ -25,6 +26,35 @@ namespace JWT.Controllers
         }
 
 
+
+        /// <summary>
+        /// Получить пользователя
+        /// </summary>
+        /// <param name="id">Индификтор пользвателя</param>
+        /// <returns>Найденный пользватель</returns>
+        [HttpGet("GetUserById")]
+        public User GetUser(int id)
+        {
+           return _userService.GetById(id);
+        }
+
+        /// <summary>
+        /// Удалить пользвателя
+        /// </summary>
+        /// <param name="id">Индефикатор пользователя</param>
+        [HttpGet("DeleteUser")]
+        public  Task DeleteUser(int id)
+        {
+            return _userService.DeleteAsync(id);
+        }
+
+
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost("/token")]
         public IActionResult Token(string username, string password)
         {
@@ -54,6 +84,12 @@ namespace JWT.Controllers
             return Json(response);
         }
 
+
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        /// <param name="userView"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody]UserView userView)

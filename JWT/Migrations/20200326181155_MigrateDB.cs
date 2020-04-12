@@ -79,7 +79,7 @@ namespace JWT.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Exercises",
                 columns: table => new
                 {
                     IdTask = table.Column<int>(nullable: false)
@@ -91,8 +91,8 @@ namespace JWT.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.IdTask);
-                    table.UniqueConstraint("AK_Tasks_TextTask", x => x.TextTask);
+                    table.PrimaryKey("PK_Exercises", x => x.IdTask);
+                    table.UniqueConstraint("AK_Exercises_TextTask", x => x.TextTask);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,7 +188,7 @@ namespace JWT.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Exercises");
 
             migrationBuilder.DropTable(
                 name: "Teams");
