@@ -19,7 +19,7 @@ namespace JWT.Models
         public int IdTask { get; set; }
 
         /// <summary>
-        /// ID темы
+        /// ID темы, вторичный ключ связан с полем IdTopic таблицы Topics
         /// </summary>
         public int TopicsId { get; set; }
 

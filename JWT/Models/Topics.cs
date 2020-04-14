@@ -23,7 +23,7 @@ namespace JWT.Models
         public string NameTopics { get; set; }
 
         /// <summary>
-        /// Уровень темы
+        /// Уровень темы, ставим сами от 1 до 3
         /// </summary>
         public int LevelsIdLevel { get; set; }
 

@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Models
 {
     /// <summary>
-    /// Журнал привязки юзера к команде
+    /// Задачи команд
     /// </summary>
-    public class UserTeams
+    public class ExercisesTeams
     {
         /// <summary>
-        /// ID журнала
+        /// ID журнала задач команд
         /// </summary>
         [Key]
-        public int UserTeamId { get; set; }
+        public int IdExercisesTeams { get; set; }
 
         /// <summary>
         /// ID команды, вторичный ключ связан с полем IdTeam таблицы Team
         /// </summary>
-        public int TeamIdTeam { get; set; }
+        public int IdTeam { get; set; }
 
         /// <summary>
-        /// ID юзера, вторичный ключ связан с полем Id таблицы User
+        /// ID задачи, вторичный ключ связан с полем IdTask таблицы Exercises
         /// </summary>
-        public int UserId { get; set; }
+        public int IdTask { get; set; }
     }
 }

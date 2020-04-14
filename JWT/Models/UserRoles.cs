@@ -19,12 +19,12 @@ namespace JWT.Models
         public int UserRoleId { get; set; }
 
         /// <summary>
-        /// ID юзера
+        /// ID юзера, вторичный ключ связан с полем Id таблицы User
         /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
-        /// ID роли
+        /// ID роли, вторичный ключ связан с полем IdRole таблицы Role
         /// </summary>
         [Required]
         public int RoleIdRole { get; set; }

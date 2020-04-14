@@ -25,11 +25,11 @@ namespace JWT.Models
         public string TeamName { get; set; }
 
         /// <summary>
-        /// ID капитана команды
+        /// ID капитана команды, вторичный ключ связан с полем Id таблицы Role
         /// </summary>
         public int CapId { get; set; }
         /// <summary>
-        /// ID тренера команды
+        /// ID тренера команды, вторичный ключ связан с полем Id таблицы Role
         /// </summary>
         public int CoachId { get; set; }       
     }
