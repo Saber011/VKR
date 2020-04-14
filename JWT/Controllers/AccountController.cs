@@ -95,7 +95,7 @@ namespace JWT.Controllers
         public IActionResult Register([FromBody]UserView userView)
         {
 
-            var user = new User { Id = userView.Id, Login = userView.Login };
+            var user = new User { Login = userView.Login };
             try
             {
                 // save 
