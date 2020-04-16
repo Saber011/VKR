@@ -62,6 +62,12 @@ namespace JWT.Models
         /// Темы
         /// </summary>
         public DbSet<Topics> Topics { get; set; }
+
+        /// <summary>
+        /// Задачи от тренера
+        /// </summary>
+        public DbSet<ExercisesTeams> ExercisesTeamss { get; set; }
+       
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
