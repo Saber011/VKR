@@ -1,4 +1,6 @@
 ﻿using JWT.Models;
+using JWT.Request;
+using JWT.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,25 +17,32 @@ namespace JWT.Service
         /// <summary>
         /// Поиск по id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        User GetById(int id);
+        /// <param name="id">Индификатор пользователя</param>
+        /// <returns>Возращает пользвателя</returns>
+        Task<UserModelRequest> GetById(int id);
 
         /// <summary>
         /// Создание пользователя
         /// </summary>
         /// <param name="user"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        User Create(User user, string password);
+        Task<User> Create(UserRequest user);
 
         /// <summary>
         /// Удаление пользователя
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task DeleteAsync(int id);
+        /// <param name="id">Индификатор пользователя</param>
+        Task<dynamic> DeleteAsync(int id);
 
+        /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="id">Индификатор пользователя</param>
+        /// <param name="newPassword">Новый пароль</param>
+        Task<dynamic> ResetPassword(int id, string newPassword);
 
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        Task<UserModelRequest[]> GetAllUsers();
     }
 }

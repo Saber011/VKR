@@ -1,4 +1,5 @@
 ﻿using JWT.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,39 +7,86 @@ using System.Threading.Tasks;
 
 namespace JWT.Service
 {
+    /// <inheritdoc/>
     public class ContextService : IContextService
     {
         private readonly ApplicationContext db;
+
         public ContextService(ApplicationContext _applicationContext) =>
             db = _applicationContext;
 
-        public Tasks Create(Tasks tasks)
+        /// <inheritdoc/>
+        public async Task<Exercises> Create(Exercises exercises)
         {
+            db.Exercises.Add(exercises);
+            await db.SaveChangesAsync();
+
+            return exercises;
+        }
+
+        /// <inheritdoc/>
+        public async Task<dynamic> DeleteAsync(int id)
+        {
+            Exercises exercisesTeam = await db.Exercises.FindAsync(id);
+            db.Exercises.Remove(exercisesTeam);
+            await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Задача успешно удаленна"
+            };
+
+            return responce;
+        }
+
+        /// <inheritdoc/>
+        public async Task<dynamic> EditAsync(Exercises exercises)
+        {
+            db.Exercises.Update(exercises);
+            await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Команда успешно изменена"
+            };
+
+            return responce;
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<Exercises>> GetAll()
+        {
+            return await db.Exercises.ToListAsync();
+        }
+
+        /// <inheritdoc/>
+        public Task<Exercises> GetAllIssuesAcategory(int id)
+        {
+            //ToDo получить
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int id)
+        /// <inheritdoc/>
+        public async Task<bool> GetAnswer(int id, string userAnswer)
         {
-            throw new NotImplementedException();
+            //Todo work
+            var tasks = db.Exercises.FirstOrDefault(x => x.IdTask == id);
+            return tasks.Equals(userAnswer);
+
         }
 
-        public Task EditAsync(int id)
+        /// <inheritdoc/>
+        public async Task<Exercises> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await db.Exercises.FirstOrDefaultAsync(x => x.IdTask == id);
         }
 
-        public Task<Tasks> GetAll()
+        /// <inheritdoc/>
+        public async Task<Exercises> GetNextTask(int id)
         {
-            throw new NotImplementedException();
-        }
+            await db.Database.ExecuteSqlRawAsync($"ToDo create func");
+            await db.SaveChangesAsync();
 
-        public Task<Tasks> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Tasks> GetNextTask(int id)
-        {
             throw new NotImplementedException();
         }
     }

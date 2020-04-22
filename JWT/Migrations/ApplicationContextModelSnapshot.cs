@@ -112,7 +112,7 @@ namespace JWT.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("JWT.Models.Tasks", b =>
+            modelBuilder.Entity("JWT.Models.Exercises", b =>
                 {
                     b.Property<int>("IdTask")
                         .ValueGeneratedOnAdd()
@@ -137,7 +137,7 @@ namespace JWT.Migrations
 
                     b.HasAlternateKey("TextTask");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("JWT.Models.Team", b =>

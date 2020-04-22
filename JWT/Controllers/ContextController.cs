@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JWT.Models;
+using JWT.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +13,35 @@ namespace JWT.Controllers
     [ApiController]
     public class ContextController : ControllerBase
     {
-        // GET: api/Context
+        private readonly IContextService _contextService;
+        private readonly ExecuteService _executeService;
+
+        public ContextController(IContextService contextService, ExecuteService executeService)
+        {
+            _contextService = contextService;
+            _executeService = executeService;
+        }
+
+        /// <summary>
+        /// Получить все задачи
+        /// </summary>
+        /// <returns>Возращает список всех задач</returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("GetContexts")]
+        public async Task<ServiceResponse<List<Exercises>>> GetContexts()
         {
-            return new string[] { "value1", "value2" };
+            return await _executeService.TryExecute(() => _contextService.GetAll());
         }
 
-        // GET: api/Context/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Context
+        /// <summary>
+        /// Создать задачу
+        /// </summary>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("Create")]
+        public async Task<ServiceResponse<Exercises>> CreateContexts([FromBody] Exercises exercises )
         {
+            return await _executeService.TryExecute(() => _contextService.Create(exercises));
         }
 
-        // PUT: api/Context/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
