@@ -17,7 +17,7 @@ namespace JWT.Service
         /// Получить все команды
         /// </summary>
         /// <returns></returns>
-        List<Team> AllTeams();
+        Task<List<Team>> AllTeams();
 
         /// <summary>
         /// Поиск команды по id
@@ -31,19 +31,19 @@ namespace JWT.Service
         /// </summary>
         /// <param name="team"></param>
         /// <returns></returns>
-        Task Create(Team team);
+        Task<Team> Create(Team team);
 
         /// <summary>
         /// Удаление команды
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteAsync(int id);
+        Task<dynamic> DeleteAsync(int id);
 
         /// <summary>
         /// Редактирование данных команды
         /// </summary>
         /// <returns></returns>
-        Task Edit(Team team);
+        Task<dynamic> Edit(Team team);
     }
 }

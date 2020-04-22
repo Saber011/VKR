@@ -13,6 +13,8 @@ using System.Reflection;
 using System.IO;
 using System;
 using JWT.Service;
+using JWT.Interface;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace JWT
 {
@@ -56,7 +58,7 @@ namespace JWT
                            };
                        });
             services.AddControllersWithViews();
-            
+            services.AddMemoryCache();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -75,11 +77,14 @@ namespace JWT
                 c.IncludeXmlComments(xmlPath);
             });
 
-            
+
+            //services.AddScoped<ExecuteService>();
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IContextService, ContextService>();
+            services.TryAddScoped<ExecuteService>();
+
         }
 
 

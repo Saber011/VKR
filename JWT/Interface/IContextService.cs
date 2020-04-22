@@ -14,31 +14,31 @@ namespace JWT.Service
         /// <summary>
         /// Получить все задачи
         /// </summary>
-        List<Exercises> GetAll();
+        Task<List<Exercises>> GetAll();
 
         /// <summary>
         /// Поиск по id
         /// </summary>
         /// <param name="id"></param>
-        Exercises GetById(int id);
+        Task<Exercises> GetById(int id);
 
         /// <summary>
         /// Создание задачи
         /// </summary>
         /// <param name="exercises"></param>
-        Task Create(Exercises exercises);
+        Task<Exercises> Create(Exercises exercises);
 
         /// <summary>
         /// Удаление задачи
         /// </summary>
         /// <param name="id"></param>
-        Task DeleteAsync(int id);
+        Task<dynamic> DeleteAsync(int id);
 
         /// <summary>
         /// Редактирование задачи
         /// </summary>
         /// <param name="exercises"></param>
-        Task EditAsync(Exercises exercises);
+        Task<dynamic> EditAsync(Exercises exercises);
 
         /// <summary>
         /// Получить следующую задачу для пользователя
@@ -52,14 +52,13 @@ namespace JWT.Service
         /// <param name="id"></param>
         Task<Exercises> GetAllIssuesAcategory(int id);
 
-
         /// <summary>
         /// Проверить верность ответа на задачу
         /// </summary>
         /// <param name="id">Id задачи </param>
         /// <param name="userAnswer">Пользовательские ответы</param>
         /// <returns></returns>
-        bool GetAnswer(int id, string userAnswer);
+        Task<bool> GetAnswer(int id, string userAnswer);
 
     }
 }

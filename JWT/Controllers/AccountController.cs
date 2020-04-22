@@ -1,64 +1,86 @@
-﻿using System;
+﻿using JWT.Models;
+using JWT.Request;
+using JWT.Service;
+using JWT.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using JWT.Models;
-using JWT.Service;
-using JWT.ViewModel;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace JWT.Controllers
 {
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        private ApplicationContext db;
-        private IUserService _userService;
-        public AccountController(ApplicationContext context, IUserService userService)
+        private readonly ExecuteService _executeService;
+        private readonly ApplicationContext db;
+        private readonly IUserService _userService;
+        public AccountController(
+            ApplicationContext context,
+            IUserService userService,
+            ExecuteService executeService)
         {
             _userService = userService;
             db = context;
+            _executeService = executeService;
         }
-
-
 
         /// <summary>
         /// Получить пользователя
         /// </summary>
-        /// <param name="id">Индификтор пользвателя</param>
+        /// <param name = "id" > Индификтор пользвателя</param>
         /// <returns>Найденный пользватель</returns>
-        [HttpGet("GetUserById")]
-        public User GetUser(int id)
+        /// <response code = "200" > Успешное выполнение.</response>
+        /// <response code = "204" > Контент не найден</response>
+        /// <response code = "500" > Непредвиденная ошибка сервера.</response>
+        [HttpPost("GetUserById")]
+        public async Task<ServiceResponse<UserModelRequest>> GetUser(int id)
         {
-           return _userService.GetById(id);
+            return await _executeService.TryExecute(() => _userService.GetById(id));
+        }
+
+        /// <summary>
+        /// Получить всех пользвателей
+        /// </summary>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
+        [HttpGet("GetAllUsers")]
+        public async Task<ServiceResponse<UserModelRequest[]>> GetAllUsers()
+        {
+            return await _executeService.TryExecute(() => _userService.GetAllUsers());
         }
 
         /// <summary>
         /// Удалить пользвателя
         /// </summary>
         /// <param name="id">Индефикатор пользователя</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
         [HttpGet("DeleteUser")]
-        public  Task DeleteUser(int id)
+        public async Task<ServiceResponse<dynamic>> DeleteUser(int id)
         {
-            return _userService.DeleteAsync(id);
+            return await _executeService.TryExecute(() => _userService.DeleteAsync(id));
         }
-
 
         /// <summary>
         /// Авторизация пользователя
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        [HttpPost("/token")]
-        public IActionResult Token(string username, string password)
+        /// <param name="userRequest">Модель пользователя</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody]UserRequest userRequest)
         {
-            var identity = GetIdentity(username, password);
+            var identity = GetIdentity(userRequest.Login, userRequest.Password);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
@@ -84,29 +106,29 @@ namespace JWT.Controllers
             return Json(response);
         }
 
-
         /// <summary>
         /// Регистрация пользователя
         /// </summary>
-        /// <param name="userView"></param>
-        /// <returns></returns>
+        /// <param name="userRequest">Модель пользвателя</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody]UserView userView)
+        public async Task<ServiceResponse<User>> Register([FromBody]UserRequest userRequest)
         {
+           return await _executeService.TryExecute(() => _userService.Create(userRequest));    
+        }
 
-            var user = new User { Login = userView.Login };
-            try
-            {
-                // save 
-                _userService.Create(user, userView.Password);
-                return Ok();
-            }
-            catch (AppException ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
+        /// <summary>
+        /// Изменить пароль пользователя
+        /// </summary>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
+        [AllowAnonymous]
+        [HttpPost("resertPassword")]
+        public async Task<ServiceResponse<dynamic>> ResetPassword([FromBody] ResetPasswordRequest request )
+        {
+            return await _executeService.TryExecute(() => _userService.ResetPassword(request.Id, request.NewPasswrod));
         }
 
         private ClaimsIdentity GetIdentity(string username, string password)
@@ -143,7 +165,6 @@ namespace JWT.Controllers
                     return claimsIdentity;
                 }
 
-            
             // если пользователя не найдено
             return null;
         }

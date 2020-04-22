@@ -15,37 +15,48 @@ namespace JWT.Service
         public ContextService(ApplicationContext _applicationContext) =>
             db = _applicationContext;
 
-
         /// <inheritdoc/>
-        public async Task Create(Exercises Exercises)
+        public async Task<Exercises> Create(Exercises exercises)
         {
-            db.Exercises.Add(Exercises);
+            db.Exercises.Add(exercises);
             await db.SaveChangesAsync();
+
+            return exercises;
         }
 
         /// <inheritdoc/>
-        public async Task DeleteAsync(int id)
+        public async Task<dynamic> DeleteAsync(int id)
         {
             Exercises exercisesTeam = await db.Exercises.FindAsync(id);
-            if (exercisesTeam == null)
-            {
-                throw new AppException("Не возможно удалить эту задачу");
-            }
             db.Exercises.Remove(exercisesTeam);
             await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Задача успешно удаленна"
+            };
+
+            return responce;
         }
 
         /// <inheritdoc/>
-        public async Task EditAsync(Exercises exercises)
+        public async Task<dynamic> EditAsync(Exercises exercises)
         {
             db.Exercises.Update(exercises);
             await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Команда успешно изменена"
+            };
+
+            return responce;
         }
 
         /// <inheritdoc/>
-        public List<Exercises> GetAll()
+        public async Task<List<Exercises>> GetAll()
         {
-            return db.Exercises.ToList();
+            return await db.Exercises.ToListAsync();
         }
 
         /// <inheritdoc/>
@@ -56,25 +67,25 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public bool GetAnswer(int id, string userAnswer)
+        public async Task<bool> GetAnswer(int id, string userAnswer)
         {
+            //Todo work
             var tasks = db.Exercises.FirstOrDefault(x => x.IdTask == id);
             return tasks.Equals(userAnswer);
 
         }
 
         /// <inheritdoc/>
-        public Exercises GetById(int id)
+        public async Task<Exercises> GetById(int id)
         {
-            return db.Exercises.FirstOrDefault(x => x.IdTask == id);
+            return await db.Exercises.FirstOrDefaultAsync(x => x.IdTask == id);
         }
 
         /// <inheritdoc/>
         public async Task<Exercises> GetNextTask(int id)
         {
-          await  db.Database.ExecuteSqlCommandAsync(@"
-ToDo create func");
-            db.SaveChanges();
+            await db.Database.ExecuteSqlRawAsync($"ToDo create func");
+            await db.SaveChangesAsync();
 
             throw new NotImplementedException();
         }

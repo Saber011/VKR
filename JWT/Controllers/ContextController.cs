@@ -14,9 +14,13 @@ namespace JWT.Controllers
     public class ContextController : ControllerBase
     {
         private readonly IContextService _contextService;
+        private readonly ExecuteService _executeService;
 
-        public ContextController(IContextService contextService) =>
+        public ContextController(IContextService contextService, ExecuteService executeService)
+        {
             _contextService = contextService;
+            _executeService = executeService;
+        }
 
         /// <summary>
         /// Получить все задачи
@@ -24,9 +28,9 @@ namespace JWT.Controllers
         /// <returns>Возращает список всех задач</returns>
         [HttpGet]
         [Route("GetContexts")]
-        public List<Exercises> GetContexts()
+        public async Task<ServiceResponse<List<Exercises>>> GetContexts()
         {
-            return _contextService.GetAll();
+            return await _executeService.TryExecute(() => _contextService.GetAll());
         }
 
         /// <summary>
@@ -34,11 +38,10 @@ namespace JWT.Controllers
         /// </summary>
         [HttpPost]
         [Route("Create")]
-        public Task CreateContexts([FromBody] Exercises exercises )
+        public async Task<ServiceResponse<Exercises>> CreateContexts([FromBody] Exercises exercises )
         {
-            return _contextService.Create(exercises);
+            return await _executeService.TryExecute(() => _contextService.Create(exercises));
         }
-
 
     }
 }

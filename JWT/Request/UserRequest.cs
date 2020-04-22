@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JWT.ViewModel
 {
-    public class UserView
+    public class UserRequest
     {
         public string Login { get; set; }
         public string Password { get; set; }
