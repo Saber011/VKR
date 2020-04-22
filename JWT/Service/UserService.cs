@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
+using JWT.Request;
+using JWT.ViewModel;
+
 namespace JWT.Service
 {
 
@@ -20,40 +24,77 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public User Create(User user, string password)
+        public async Task<User> Create(UserRequest user)
         {  // validation
-            if (string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(user.Password))
                 throw new AppException("Password is required");
 
             if (_context.Users.Any(x => x.Login == user.Login))
                 throw new AppException("Username \"" + user.Login + "\" is already taken");
 
-            user.Password = SecurePasswordHasher.PasHas(password);
-            _context.Users.Add(user);
+            user.Password = SecurePasswordHasher.PasHas(user.Password);
+            var userModel = new User() { Login = user.Login, Password = user.Password };
+            _context.Users.Add(userModel);
             _context.SaveChanges();
             var users = _context.Users.FirstOrDefault(x => x.Login == user.Login);
+            // ToDo create triger
             _context.UserRoles.Add(new UserRoles { UserId = users.Id});
-            _context.SaveChanges();
-            return user;
+            _context.Level1.Add(new Level1 {});
+            _context.Level2.Add(new Level2 {});
+            _context.Level3.Add(new Level3 {});
+            await _context.SaveChangesAsync();
+
+            return userModel;
         }
 
         /// <inheritdoc/>
-        public async Task DeleteAsync(int id)
+        public async Task<dynamic> DeleteAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            await _context.Database.ExecuteSqlRawAsync($"EXEC DeleteUser {id};");
+            await _context.SaveChangesAsync();
+            var responce = new
             {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
-            }
+                Messege = "Успешно удаленно"
+            };
+
+            return responce;
         }
 
         /// <inheritdoc/>
-        public User GetById(int id)
+        public async Task<UserModelRequest> GetById(int id)
         {
-            return _context.Users.Find(id);
+            return (UserModelRequest) await _context.Users.FindAsync(id);
         }
 
+        /// <inheritdoc/>
+        public async Task<UserModelRequest[]> GetAllUsers()
+        {
+            var users = await _context.Users.ToArrayAsync();
+            var result = new UserModelRequest[users.Length];
+            for (int i = 0; i < users.Length; i++)
+            {
+                result[i] = (UserModelRequest)users[i];
+            }
+            return result;
+        }
 
+        /// <inheritdoc/>
+        public async Task<dynamic> ResetPassword(int id, string newPassword)
+        {
+            var user = _context.Users.Find(id);
+            if (user == null)
+            {
+                throw new AppException("Не существует пользователя с таким индификатором");
+            }
+            user.Password = SecurePasswordHasher.PasHas(newPassword);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            var responce = new
+            {
+                Messege = "Пароль успешно изменен"
+            };
+
+            return responce;
+        }
     }
 }

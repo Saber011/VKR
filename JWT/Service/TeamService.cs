@@ -1,4 +1,5 @@
 ﻿using JWT.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace JWT.Service
             db = _applicationContext;
 
         /// <inheritdoc/>
-        public List<Team> AllTeams()
+        public async Task<List<Team>> AllTeams()
         {
-            return db.Teams.ToList();
+            return  await db.Teams.ToListAsync();
         }
 
         private bool CanAddOrUpdateTeam(Team team)
@@ -26,7 +27,7 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public async Task Create(Team team)
+        public async Task<Team> Create(Team team)
         {
             if (CanAddOrUpdateTeam(team))
             {
@@ -34,22 +35,27 @@ namespace JWT.Service
             }
             db.Teams.Add(team);
             await  db.SaveChangesAsync();
+
+            return team;
         }
 
         /// <inheritdoc/>
-        public async Task DeleteAsync(int IdTeam)
+        public async Task<dynamic> DeleteAsync(int IdTeam)
         {
             Team RemovTeam = await db.Teams.FindAsync(IdTeam);
-            if (RemovTeam == null)
-            {
-                throw new AppException("Не возможно удалить эту команду");
-            }
             db.Teams.Remove(RemovTeam);
             await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Команда успешно удаленна"
+            };
+
+            return responce;
         }
     
         /// <inheritdoc/>
-        public async Task Edit(Team team)
+        public async Task<dynamic> Edit(Team team)
         {
             if (CanAddOrUpdateTeam(team))
             {
@@ -57,17 +63,19 @@ namespace JWT.Service
             }
             db.Teams.Update(team);
             await db.SaveChangesAsync();
+
+            var responce = new
+            {
+                Messege = "Информация о команде успешно изменена"
+            };
+
+            return responce;
         }
 
         /// <inheritdoc/>
         public async Task<Team> FindTeamAsync(int IdTeam)
         {
-            var team = await db.Teams.FindAsync(IdTeam);
-            if (team == null)
-            {
-                new AppException("Команда не найдена");
-            }
-           return  team;
+            return await db.Teams.FindAsync(IdTeam);
         }
     }
 }
