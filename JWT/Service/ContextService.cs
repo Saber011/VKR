@@ -10,26 +10,25 @@ namespace JWT.Service
     /// <inheritdoc/>
     public class ContextService : IContextService
     {
-        private readonly ApplicationContext db;
+        private readonly ApplicationContext _context;
 
         public ContextService(ApplicationContext _applicationContext) =>
-            db = _applicationContext;
+            _context = _applicationContext;
 
         /// <inheritdoc/>
-        public async Task<Exercises> Create(Exercises exercises)
+        public async Task<Exercises> CreateAsync(Exercises exercises)
         {
-            db.Exercises.Add(exercises);
-            await db.SaveChangesAsync();
-
+            _context.Exercises.Add(exercises);
+            await _context.SaveChangesAsync();
             return exercises;
         }
 
         /// <inheritdoc/>
         public async Task<dynamic> DeleteAsync(int id)
         {
-            Exercises exercisesTeam = await db.Exercises.FindAsync(id);
-            db.Exercises.Remove(exercisesTeam);
-            await db.SaveChangesAsync();
+            Exercises exercisesTeam = await _context.Exercises.FindAsync(id);
+            _context.Exercises.Remove(exercisesTeam);
+            await _context.SaveChangesAsync();
 
             var responce = new
             {
@@ -42,50 +41,63 @@ namespace JWT.Service
         /// <inheritdoc/>
         public async Task<dynamic> EditAsync(Exercises exercises)
         {
-            db.Exercises.Update(exercises);
-            await db.SaveChangesAsync();
+            _context.Exercises.Update(exercises);
+            await _context.SaveChangesAsync();
 
             var responce = new
             {
-                Messege = "Команда успешно изменена"
+                Messege = "Задача успешно изменена"
             };
 
             return responce;
         }
 
         /// <inheritdoc/>
-        public async Task<List<Exercises>> GetAll()
+        public async Task<List<Exercises>> GetAllAsync()
         {
-            return await db.Exercises.ToListAsync();
+            return await _context.Exercises.ToListAsync();
         }
 
         /// <inheritdoc/>
-        public Task<Exercises> GetAllIssuesAcategory(int id)
+        public async Task<List<Topics>> GetAllTopicsAsync()
         {
-            //ToDo получить
-            throw new NotImplementedException();
+            return await _context.Topics.ToListAsync();
         }
 
         /// <inheritdoc/>
-        public async Task<bool> GetAnswer(int id, string userAnswer)
+        public async Task<Exercises[]> GetAllIssuesAcategoryAsync(int id)
+        {
+            return await _context.Exercises.Where(x => x.TopicsId == id).ToArrayAsync();
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> GetAnswerAsync(int id, string userAnswer, int userId)
         {
             //Todo work
-            var tasks = db.Exercises.FirstOrDefault(x => x.IdTask == id);
+            // wait api query
+            var tasks = await _context.Exercises.FirstOrDefaultAsync(x => x.IdTask == id);
+            var topic = await _context.Topics.FirstOrDefaultAsync(x => x.IdTopic == tasks.TopicsId);
+
+            if (tasks.Equals(userAnswer))
+            {
+                await _context.Database.ExecuteSqlRawAsync($"EXEC CalcMp {tasks.Level} {topic.Kostil} {userId}");
+            }
+
             return tasks.Equals(userAnswer);
 
         }
 
         /// <inheritdoc/>
-        public async Task<Exercises> GetById(int id)
+        public async Task<Exercises> GetByIdAsync(int id)
         {
-            return await db.Exercises.FirstOrDefaultAsync(x => x.IdTask == id);
+            return await _context.Exercises.FirstOrDefaultAsync(x => x.IdTask == id);
         }
 
         /// <inheritdoc/>
-        public async Task<Exercises> GetNextTask(int id)
+        public async Task<Exercises> GetNextTaskAsync(int id)
         {
-            await db.Database.ExecuteSqlRawAsync($"ToDo create func");
-            await db.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync($"EXEC тут это процедурка от Ильи");
+            await _context.SaveChangesAsync();
 
             throw new NotImplementedException();
         }

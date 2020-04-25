@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JWT.Models
 {
@@ -31,7 +27,7 @@ namespace JWT.Models
         /// <summary>
         /// Журнал привязки юзера к команде
         /// </summary>
-        public DbSet<UserTeams> UserTeams {get;set;}
+        public DbSet<UserTeams> UserTeams { get; set; }
 
         /// <summary>
         /// Журнал ролей
@@ -67,26 +63,22 @@ namespace JWT.Models
         /// Задачи от тренера
         /// </summary>
         public DbSet<ExercisesTeams> ExercisesTeamss { get; set; }
-       
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
             Database.EnsureCreated();
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /// <summary>
-            /// Создание альтернативных ключей
-            /// </summary>
+            // Создание альтернативных ключей
             modelBuilder.Entity<User>().HasAlternateKey(u => u.Login);
             modelBuilder.Entity<Exercises>().HasAlternateKey(u => u.TextTask);
             modelBuilder.Entity<Team>().HasAlternateKey(u => u.TeamName);
             modelBuilder.Entity<Role>().HasAlternateKey(u => u.NameRole);
 
-            /// <summary>
-            /// Создание дефолтных значений
-            /// </summary>
-            modelBuilder.Entity<UserRoles>().Property(u => u.RoleIdRole).HasDefaultValue(1); 
+            // Создание дефолтных значений
+            modelBuilder.Entity<UserRoles>().Property(u => u.RoleIdRole).HasDefaultValue(1);
             modelBuilder.Entity<Level1>().Property(u => u.A).HasDefaultValue(0);
             modelBuilder.Entity<Level2>().Property(u => u.B).HasDefaultValue(0);
             modelBuilder.Entity<Level2>().Property(u => u.C).HasDefaultValue(0);

@@ -1,20 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using JWT.Models;
+using JWT.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-using System.IO;
-using System;
-using JWT.Service;
-using JWT.Interface;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace JWT
 {
@@ -39,22 +36,22 @@ namespace JWT
                            options.RequireHttpsMetadata = false;
                            options.TokenValidationParameters = new TokenValidationParameters
                            {
-                            // укзывает, будет ли валидироваться издатель при валидации токена
-                            ValidateIssuer = true,
-                            // строка, представляющая издателя
-                            ValidIssuer = AuthOptions.ISSUER,
+                               // укзывает, будет ли валидироваться издатель при валидации токена
+                               ValidateIssuer = true,
+                               // строка, представляющая издателя
+                               ValidIssuer = AuthOptions.ISSUER,
 
-                            // будет ли валидироваться потребитель токена
-                            ValidateAudience = true,
-                            // установка потребителя токена
-                            ValidAudience = AuthOptions.AUDIENCE,
-                            // будет ли валидироваться время существования
-                            ValidateLifetime = true,
+                               // будет ли валидироваться потребитель токена
+                               ValidateAudience = true,
+                               // установка потребителя токена
+                               ValidAudience = AuthOptions.AUDIENCE,
+                               // будет ли валидироваться время существования
+                               ValidateLifetime = true,
 
-                            // установка ключа безопасности
-                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-                            // валидация ключа безопасности
-                            ValidateIssuerSigningKey = true,
+                               // установка ключа безопасности
+                               IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                               // валидация ключа безопасности
+                               ValidateIssuerSigningKey = true,
                            };
                        });
             services.AddControllersWithViews();
@@ -68,7 +65,7 @@ namespace JWT
                     Version = "0.1",
                     Title = "API",
                     Description = "ASP.NET Core Web API ",
-                    
+
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -103,10 +100,10 @@ namespace JWT
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-      
+
             });
 
-    
+
             app.UseRouting();
 
             app.UseAuthentication();

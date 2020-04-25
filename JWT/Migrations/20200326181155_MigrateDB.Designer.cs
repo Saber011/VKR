@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWT.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200326181155_MigrateDB")]
-    partial class MigrateDB
+    [Migration("20200326181155_Migrate_context")]
+    partial class Migrate_context
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
