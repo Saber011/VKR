@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace JWT.Models
 {
@@ -40,7 +35,7 @@ namespace JWT.Models
         /// "Название темы", хранит лвл юзера по этой теме
         /// </summary>
         [Required]
-        public int G { get; set; }        
+        public int G { get; set; }
 
     }
 }

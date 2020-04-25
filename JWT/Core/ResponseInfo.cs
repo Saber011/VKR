@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace JWT
+﻿namespace JWT
 {
     /// <summary>
     /// Информация об ответе
@@ -21,7 +16,7 @@ namespace JWT
         /// <summary>
         /// Код ошибки. Возможные значения:
         /// (0) NotFound - Объект не был найден,
-        /// (1) DbError - Ошибка на уровне БД
+        /// (1) _contextError - Ошибка на уровне БД
         /// (2) WrongRequest - Не правильный объект запроса
         /// (3) Unclassified - Неизвестная ошибка
         /// (4) UnAuthorized - Авторизация не выполнена

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace JWT.Models
 {
@@ -31,6 +26,6 @@ namespace JWT.Models
         /// <summary>
         /// ID тренера команды, вторичный ключ связан с полем Id таблицы Role
         /// </summary>
-        public int CoachId { get; set; }       
+        public int CoachId { get; set; }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using JWT.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Service
@@ -10,14 +8,14 @@ namespace JWT.Service
     /// <summary>
     /// Сервис для работы с командами
     /// </summary>
-   public interface ITeamService
+    public interface ITeamService
     {
 
         /// <summary>
         /// Получить все команды
         /// </summary>
         /// <returns></returns>
-        Task<List<Team>> AllTeams();
+        Task<List<Team>> GetAllTeamsAsync();
 
         /// <summary>
         /// Поиск команды по id
@@ -31,7 +29,7 @@ namespace JWT.Service
         /// </summary>
         /// <param name="team"></param>
         /// <returns></returns>
-        Task<Team> Create(Team team);
+        Task<Team> CreateAsync(Team team);
 
         /// <summary>
         /// Удаление команды
@@ -44,6 +42,6 @@ namespace JWT.Service
         /// Редактирование данных команды
         /// </summary>
         /// <returns></returns>
-        Task<dynamic> Edit(Team team);
+        Task<dynamic> EditAsync(Team team);
     }
 }

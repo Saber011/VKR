@@ -1,17 +1,14 @@
 ﻿using JWT.Models;
 using JWT.Request;
 using JWT.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Service
 {
-   /// <summary>
-   /// сервис для работы с пользователями
-   /// </summary>
-   public interface IUserService
+    /// <summary>
+    /// сервис для работы с пользователями
+    /// </summary>
+    public interface IUserService
     {
 
         /// <summary>
@@ -19,13 +16,13 @@ namespace JWT.Service
         /// </summary>
         /// <param name="id">Индификатор пользователя</param>
         /// <returns>Возращает пользвателя</returns>
-        Task<UserModelRequest> GetById(int id);
+        Task<UserModelRequest> GetByIdAsync(int id);
 
         /// <summary>
         /// Создание пользователя
         /// </summary>
-        /// <param name="user"></param>
-        Task<User> Create(UserRequest user);
+        /// <param name="user">параметры запроса</param>
+        Task<User> CreateAsync(UserRequest user);
 
         /// <summary>
         /// Удаление пользователя
@@ -38,11 +35,18 @@ namespace JWT.Service
         /// </summary>
         /// <param name="id">Индификатор пользователя</param>
         /// <param name="newPassword">Новый пароль</param>
-        Task<dynamic> ResetPassword(int id, string newPassword);
+        Task<dynamic> ResetPasswordAsync(int id, string newPassword);
 
         /// <summary>
         /// Получить всех пользователей
         /// </summary>
-        Task<UserModelRequest[]> GetAllUsers();
+        Task<UserModelRequest[]> GetAllUsersAsync();
+
+        /// <summary>
+        /// Получить токен
+        /// </summary>
+        /// <param name="request">параметры запроса</param>
+        /// <returns>Возращает токен</returns>
+        Task<dynamic> Login(UserRequest request);
     }
 }

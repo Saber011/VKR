@@ -1,13 +1,16 @@
 ﻿using JWT.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using Microsoft.EntityFrameworkCore;
 using JWT.Request;
 using JWT.ViewModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace JWT.Service
 {
@@ -24,8 +27,9 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public async Task<User> Create(UserRequest user)
-        {  // validation
+        public async Task<User> CreateAsync(UserRequest user)
+        { 
+            // validation
             if (string.IsNullOrWhiteSpace(user.Password))
                 throw new AppException("Password is required");
 
@@ -38,10 +42,10 @@ namespace JWT.Service
             _context.SaveChanges();
             var users = _context.Users.FirstOrDefault(x => x.Login == user.Login);
             // ToDo create triger
-            _context.UserRoles.Add(new UserRoles { UserId = users.Id});
-            _context.Level1.Add(new Level1 {});
-            _context.Level2.Add(new Level2 {});
-            _context.Level3.Add(new Level3 {});
+            _context.UserRoles.Add(new UserRoles { UserId = users.Id });
+            _context.Level1.Add(new Level1 { });
+            _context.Level2.Add(new Level2 { });
+            _context.Level3.Add(new Level3 { });
             await _context.SaveChangesAsync();
 
             return userModel;
@@ -61,13 +65,13 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public async Task<UserModelRequest> GetById(int id)
+        public async Task<UserModelRequest> GetByIdAsync(int id)
         {
-            return (UserModelRequest) await _context.Users.FindAsync(id);
+            return (UserModelRequest)await _context.Users.FindAsync(id);
         }
 
         /// <inheritdoc/>
-        public async Task<UserModelRequest[]> GetAllUsers()
+        public async Task<UserModelRequest[]> GetAllUsersAsync()
         {
             var users = await _context.Users.ToArrayAsync();
             var result = new UserModelRequest[users.Length];
@@ -79,7 +83,7 @@ namespace JWT.Service
         }
 
         /// <inheritdoc/>
-        public async Task<dynamic> ResetPassword(int id, string newPassword)
+        public async Task<dynamic> ResetPasswordAsync(int id, string newPassword)
         {
             var user = _context.Users.Find(id);
             if (user == null)
@@ -96,5 +100,74 @@ namespace JWT.Service
 
             return responce;
         }
+
+        /// <inheritdoc/>
+        public async Task<dynamic> Login(UserRequest request)
+        {
+            var identity = GetIdentity(request.Login, request.Password);
+            var now = DateTime.UtcNow;
+            // создаем JWT-токен
+            var jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+                    audience: AuthOptions.AUDIENCE,
+                    notBefore: now,
+                    claims: identity.Claims,
+                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+            var response = new
+            {
+                access_token = encodedJwt,
+                username = identity.Name
+            };
+
+            return response;
+        }
+
+        private ClaimsIdentity GetIdentity(string username, string password)
+        {
+            User person = _context.Users.FirstOrDefault(x => x.Login == username);
+
+            if (person == null)
+            {
+                throw new AppException("Invalid username or password");
+            }
+
+            /* Fetch the stored value */
+            string savedPasswordHash = person.Password;
+            /* Extract the bytes */
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            /* Get the salt */
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            /* Compute the hash on the password the user entered */
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            /* Compare the results */
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    throw new AppException("Invalid username or password");
+
+            if (person != null)
+
+            {
+                var firstUserRoles = _context.UserRoles.FirstOrDefault(x => x.UserId == person.Id);
+                var roles = _context.Roles.FirstOrDefault(x => x.IdRole == firstUserRoles.RoleIdRole);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, roles.NameRole)
+                };
+                ClaimsIdentity claimsIdentity =
+                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                    ClaimsIdentity.DefaultRoleClaimType);
+                return claimsIdentity;
+            }
+
+            return null;
+        }
+
     }
 }
