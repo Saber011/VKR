@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using JWT.Models;
+﻿using JWT.Models;
 using JWT.Service;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JWT.Controllers
 {
@@ -17,11 +14,11 @@ namespace JWT.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
-      /// <summary>
-      /// Сервис для работы с командами
-      /// </summary>
-      private readonly ITeamService _teamsService;
-      private readonly ExecuteService _executeService;
+        /// <summary>
+        /// Сервис для работы с командами
+        /// </summary>
+        private readonly ITeamService _teamsService;
+        private readonly ExecuteService _executeService;
 
         /// <summary>
         /// Констуртор
@@ -38,17 +35,23 @@ namespace JWT.Controllers
         /// Получить все команды
         /// </summary>
         /// <returns>Возращает список всех команд</returns>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpGet]
         [Route("GetTeams")]
         public async Task<ServiceResponse<List<Team>>> GetTeamsAsync()
         {
-            return await _executeService.TryExecute(() => _teamsService.AllTeams());
+            return await _executeService.TryExecute(() => _teamsService.GetAllTeamsAsync());
         }
 
         /// <summary>
         /// Получить команду по ее id
         /// </summary>
         /// <param name="id">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpGet]
         [Route("GetTeam")]
         public async Task<ServiceResponse<Team>> GetTeam(int id)
@@ -60,6 +63,9 @@ namespace JWT.Controllers
         /// Удалить команду
         /// </summary>
         /// <param name="Id">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpPost]
         [Route("DeleteTeams")]
         public async Task<ServiceResponse<dynamic>> DeleteTeams(int Id)
@@ -71,22 +77,28 @@ namespace JWT.Controllers
         /// Добавить команду
         /// </summary>
         /// <param name="team">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpPost]
         [Route("AddTeams")]
         public async Task<ServiceResponse<Team>> AddTeams([FromBody]Team team)
         {
-            return await _executeService.TryExecute(() => _teamsService.Create(team));
+            return await _executeService.TryExecute(() => _teamsService.CreateAsync(team));
         }
 
         /// <summary>
         /// Изменить информацию о команде
         /// </summary>
         /// <param name="team">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpPost]
         [Route("EditTeams")]
         public async Task<ServiceResponse<dynamic>> EditTeams([FromBody]Team team)
         {
-            return await _executeService.TryExecute(() => _teamsService.Edit(team));
+            return await _executeService.TryExecute(() => _teamsService.EditAsync(team));
         }
     }
 }

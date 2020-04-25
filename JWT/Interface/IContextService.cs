@@ -1,7 +1,5 @@
 ﻿using JWT.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JWT.Service
@@ -14,19 +12,24 @@ namespace JWT.Service
         /// <summary>
         /// Получить все задачи
         /// </summary>
-        Task<List<Exercises>> GetAll();
+        Task<List<Exercises>> GetAllAsync();
+
+        /// <summary>
+        /// Получить все темы
+        /// </summary>
+        Task<List<Topics>> GetAllTopicsAsync();
 
         /// <summary>
         /// Поиск по id
         /// </summary>
         /// <param name="id"></param>
-        Task<Exercises> GetById(int id);
+        Task<Exercises> GetByIdAsync(int id);
 
         /// <summary>
         /// Создание задачи
         /// </summary>
         /// <param name="exercises"></param>
-        Task<Exercises> Create(Exercises exercises);
+        Task<Exercises> CreateAsync(Exercises exercises);
 
         /// <summary>
         /// Удаление задачи
@@ -44,21 +47,21 @@ namespace JWT.Service
         /// Получить следующую задачу для пользователя
         /// </summary>
         /// <param name="id"></param>
-         Task<Exercises> GetNextTask(int id);
+        Task<Exercises> GetNextTaskAsync(int id);
 
         /// <summary>
         /// Получить все задачи по категории
         /// </summary>
         /// <param name="id"></param>
-        Task<Exercises> GetAllIssuesAcategory(int id);
+        Task<Exercises[]> GetAllIssuesAcategoryAsync(int id);
 
         /// <summary>
         /// Проверить верность ответа на задачу
         /// </summary>
         /// <param name="id">Id задачи </param>
         /// <param name="userAnswer">Пользовательские ответы</param>
-        /// <returns></returns>
-        Task<bool> GetAnswer(int id, string userAnswer);
+        /// <param name="userId">Индификтор пользвателя</param>
+        Task<bool> GetAnswerAsync(int id, string userAnswer, int userId);
 
     }
 }

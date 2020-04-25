@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JWT.Migrations
 {
-    public partial class MigrateDB : Migration
+    public partial class Migrate_context : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

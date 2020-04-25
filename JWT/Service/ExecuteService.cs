@@ -1,10 +1,4 @@
-﻿using JWT.Interface;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -14,7 +8,7 @@ namespace JWT.Service
     /// Вспомогательный класс, который позволяет централизовано перехыватывать ошибки и оборачивать их
     /// в корректный ответ <see cref="ServiceResponse{T}"/>
     /// </summary>
-    public class ExecuteService 
+    public class ExecuteService
     {
         /// <summary>
         /// Выполнить какое либо действие и обернуть резудьтат в <see cref="ServiceResponse{T}"/>

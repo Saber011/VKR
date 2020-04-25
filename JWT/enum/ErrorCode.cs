@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace JWT
+﻿namespace JWT
 {
     /// <summary>
     /// Коды ошибок
@@ -18,7 +13,7 @@ namespace JWT
         /// <summary>
         /// Ошибка на уровне БД
         /// </summary>
-        DbError = 1,
+        _contextError = 1,
 
         /// <summary>
         /// Не правильный объект запроса

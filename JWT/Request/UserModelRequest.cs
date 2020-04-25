@@ -1,22 +1,23 @@
 ﻿using JWT.Models;
-using JWT.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace JWT.Request
 {
+    /// <summary>
+    /// Запрос пользователя
+    /// </summary>
     public class UserModelRequest
     {
         /// <summary>
         /// ID юзера
         /// </summary>
+        [Required]
         public int Id { get; set; }
 
         /// <summary>
         /// Никнейм юзера
         /// </summary>
+        [Required]
         public string Login { get; set; }
 
         public static explicit operator UserModelRequest(User user)
