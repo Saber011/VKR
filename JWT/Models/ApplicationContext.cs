@@ -10,7 +10,7 @@ namespace JWT.Models
     {
 
         /// <summary>
-        /// Юзеры
+        /// Юзеры 
         /// </summary>
         public DbSet<User> Users { get; set; }
 
