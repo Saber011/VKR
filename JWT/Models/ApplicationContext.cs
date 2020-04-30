@@ -10,7 +10,7 @@ namespace JWT.Models
     {
 
         /// <summary>
-        /// Юзеры
+        /// Юзеры 
         /// </summary>
         public DbSet<User> Users { get; set; }
 
@@ -63,6 +63,10 @@ namespace JWT.Models
         /// Задачи от тренера
         /// </summary>
         public DbSet<ExercisesTeams> ExercisesTeamss { get; set; }
+        /// <summary>
+        /// Решенные пользователями задачи
+        /// </summary>
+        public DbSet<ExercisesTeams> CompleateExercises { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
@@ -86,6 +90,7 @@ namespace JWT.Models
             modelBuilder.Entity<Level3>().Property(u => u.E).HasDefaultValue(0);
             modelBuilder.Entity<Level3>().Property(u => u.F).HasDefaultValue(0);
             modelBuilder.Entity<Level3>().Property(u => u.G).HasDefaultValue(0);
+            modelBuilder.Entity<Team>().Property(u => u.TeamRating).HasDefaultValue(0);
         }
 
     }
