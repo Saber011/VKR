@@ -9,9 +9,13 @@ namespace JWT.Models
     public class CompleateExercises
     {
         /// <summary>
-        /// ID Usera вторичный ключ связан с полем Id таблицы User
+        /// ID журнала выполненных задач, является первичным ключом
         /// </summary>
         [Key]
+        public int CompleateId { get; set; }
+        /// <summary>
+        /// ID Usera вторичный ключ связан с полем Id таблицы User
+        /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
