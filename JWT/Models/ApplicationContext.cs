@@ -64,7 +64,7 @@ namespace JWT.Models
         /// </summary>
         public DbSet<ExercisesTeams> ExercisesTeamss { get; set; }
         /// <summary>
-        /// Решенные пользователями задачи
+        /// Журнал решенных пользовательских задач
         /// </summary>
         public DbSet<ExercisesTeams> CompleateExercises { get; set; }
 
