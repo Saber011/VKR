@@ -1,4 +1,6 @@
-﻿using JWT.Models;
+﻿using JWT.Core;
+using JWT.Interface;
+using JWT.Models;
 using JWT.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -40,7 +42,7 @@ namespace JWT.Controllers
         /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpGet]
         [Route("GetTeams")]
-        public async Task<ServiceResponse<List<Team>>> GetTeamsAsync()
+        public async Task<ServiceResponse<List<Team>>> GetTeams()
         {
             return await _executeService.TryExecute(() => _teamsService.GetAllTeamsAsync());
         }

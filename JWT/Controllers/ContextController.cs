@@ -1,4 +1,6 @@
-﻿using JWT.Models;
+﻿using JWT.Core;
+using JWT.Interface;
+using JWT.Models;
 using JWT.Request;
 using JWT.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -98,9 +100,9 @@ namespace JWT.Controllers
         /// <response code="500">Непредвиденная ошибка сервера.</response> 
         [HttpPost]
         [Route("answer")]
-        public async Task<ServiceResponse<bool>> GetAnswerContexts(CheackTaskRequest request)
+        public async Task<ServiceResponse<bool>> GetAnswerContexts([FromBody] CheackTaskRequest request)
         {
-            return await _executeService.TryExecute(() => _contextService.GetAnswerAsync(request.Id, request.UserAnswer, request.UserId));
+            return await _executeService.TryExecute(() => _contextService.GetAnswerAsync(request.Id, request.UserAnswer, request.UserId, request.Language, request.VersionIndex));
         }
 
         /// <summary>
@@ -109,7 +111,7 @@ namespace JWT.Controllers
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response> 
-        [HttpPost]
+        [HttpGet]
         [Route("allIssuesAcategory")]
         public async Task<ServiceResponse<Exercises[]>> GetAllIssuesAcategory(int id)
         {
@@ -122,7 +124,7 @@ namespace JWT.Controllers
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response> 
-        [HttpPost]
+        [HttpGet]
         [Route("getTaskById")]
         public async Task<ServiceResponse<Exercises>> GetByIdContext(int id)
         {
@@ -135,11 +137,24 @@ namespace JWT.Controllers
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response>
-        [HttpPost]
+        [HttpGet]
         [Route("getNextTask")]
         public async Task<ServiceResponse<Exercises>> GetNextTask(int id)
         {
             return await _executeService.TryExecute(() => _contextService.GetNextTaskAsync(id));
+        }
+
+        /// <summary>
+        /// Пропустить задачу
+        /// </summary>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response>
+        [HttpGet]
+        [Route("ScipTask")]
+        public async Task<ServiceResponse<Exercises>> SkipTask(int id)
+        {
+            return await _executeService.TryExecute(() => _contextService.SkipTaskAsync(id));
         }
     }
 }

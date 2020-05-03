@@ -5,7 +5,7 @@ namespace JWT.Request
     /// <summary>
     /// Запрос на проверку ответа
     /// </summary>
-    public class CheackTaskRequest
+    public sealed class CheackTaskRequest
     {
         /// <summary>
         /// Индификатор задачи
@@ -24,6 +24,18 @@ namespace JWT.Request
         /// </summary>
         [Required]
         public int UserId { get; set; }
+
+        /// <summary>
+        /// Язык
+        /// </summary>
+        [Required]
+        public string Language { get; set; }
+
+        /// <summary>
+        /// Версия языка
+        /// </summary>
+        [Required]
+        public string VersionIndex { get; set; }
 
     }
 }

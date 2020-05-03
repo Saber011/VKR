@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace JWT.Models
-
 {
     /// <summary>
     /// Журнал ролей
     /// </summary>
-    public class UserRoles
+    public sealed class UserRoles
     {
         /// <summary>
         /// ID журнала

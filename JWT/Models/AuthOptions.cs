@@ -3,12 +3,32 @@ using System.Text;
 
 namespace JWT.Models
 {
-    public class AuthOptions
+    /// <summary>
+    /// Генерация
+    /// </summary>
+    public sealed class AuthOptions
     {
-        public const string ISSUER = "MyAuthServer"; // издатель токена
-        public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-        const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
-        public const int LIFETIME = 1; // время жизни токена - 1 минута
+        /// <summary>
+        /// издатель токена
+        /// </summary>
+        public const string ISSUER = "MyAuthServer";
+
+        /// <summary>
+        /// потребитель токена
+        /// </summary>
+        public const string AUDIENCE = "MyAuthClient";
+
+        /// <summary>
+        /// ключ для шифрации
+        /// </summary>
+        const string KEY = "mysupersecret_secretkey!123";
+
+        /// <summary>
+        /// время жизни токена - 1 минута
+        /// </summary>
+        public const int LIFETIME = 1;
+
+
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

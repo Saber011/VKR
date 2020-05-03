@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace JWT.Models
 {
-
     /// <summary>
     /// Работа с бд
     /// </summary>
-    public class ApplicationContext : DbContext
+    public sealed class ApplicationContext : DbContext
     {
-
         /// <summary>
         /// Юзеры 
         /// </summary>
@@ -73,6 +72,18 @@ namespace JWT.Models
         {
             Database.EnsureCreated();
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+        }
+
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+
+        });
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Создание альтернативных ключей

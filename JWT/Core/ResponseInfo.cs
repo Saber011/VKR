@@ -1,4 +1,6 @@
-﻿namespace JWT
+﻿using JWT.Enum;
+
+namespace JWT.Core
 {
     /// <summary>
     /// Информация об ответе

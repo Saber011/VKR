@@ -6,7 +6,7 @@ namespace JWT.Models
     /// <summary>
     /// Журнал ролей
     /// </summary>
-    public class CompleateExercises
+    public sealed class CompleateExercises
     {
         /// <summary>
         /// ID журнала выполненных задач, является первичным ключом

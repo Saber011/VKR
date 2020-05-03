@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JWT.ViewModel
+namespace JWT.Request
 {
     /// <summary>
     /// Запрос на создание пользователя
     /// </summary>
-    public class UserRequest
+    public sealed class UserRequest
     {
         /// <summary>
         /// Логин

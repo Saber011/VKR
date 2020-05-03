@@ -1,4 +1,4 @@
-﻿namespace JWT
+﻿namespace JWT.Core
 {
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace JWT.Service
+namespace JWT.Exceptions
 {
 
     // Custom exception class for throwing application specific exceptions (e.g. for validation) 

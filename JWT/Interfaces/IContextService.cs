@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JWT.Service
+namespace JWT.Interface
 {
     /// <summary>
     /// сервис для работы с задачами
@@ -56,12 +56,20 @@ namespace JWT.Service
         Task<Exercises[]> GetAllIssuesAcategoryAsync(int id);
 
         /// <summary>
+        /// Получить все задачи по категории
+        /// </summary>
+        /// <param name="id">Id задачи</param>
+        Task<Exercises> SkipTaskAsync(int id);
+
+        /// <summary>
         /// Проверить верность ответа на задачу
         /// </summary>
-        /// <param name="id">Id задачи </param>
+        /// <param name="idTask">Id задачи</param>
         /// <param name="userAnswer">Пользовательские ответы</param>
         /// <param name="userId">Индификтор пользвателя</param>
-        Task<bool> GetAnswerAsync(int id, string userAnswer, int userId);
+        /// <param name="language">язык программирования </param>
+        /// <param name="versionIndex">версия языка</param>
+        Task<bool> GetAnswerAsync(int idTask, string userAnswer, int userId, string language, string versionIndex);
 
     }
 }

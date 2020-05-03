@@ -1,7 +1,8 @@
-﻿using JWT.Models;
+﻿using JWT.Core;
+using JWT.Interface;
+using JWT.Models;
 using JWT.Request;
 using JWT.Service;
-using JWT.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -31,7 +32,8 @@ namespace JWT.Controllers
         /// <response code = "200" > Успешное выполнение.</response>
         /// <response code = "204" > Контент не найден</response>
         /// <response code = "500" > Непредвиденная ошибка сервера.</response>
-        [HttpPost("GetUserById")]
+        [Authorize]
+        [HttpGet("GetUserById")]
         public async Task<ServiceResponse<UserModelRequest>> GetUser(int id)
         {
             return await _executeService.TryExecute(() => _userService.GetByIdAsync(id));
@@ -56,7 +58,7 @@ namespace JWT.Controllers
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response>
-        [HttpGet("DeleteUser")]
+        [HttpPost("DeleteUser")]
         public async Task<ServiceResponse<dynamic>> DeleteUser(int id)
         {
             return await _executeService.TryExecute(() => _userService.DeleteAsync(id));

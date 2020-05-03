@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace JWT
+namespace JWT.Core
 {
     public class ErrorsList : List<ValidationResult>
     {

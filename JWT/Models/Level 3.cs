@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// 3 Уровень тем, легкий
     /// </summary>
-    public class Level3
+    public sealed class Level3
     {
         /// <summary>
         /// ID юзера

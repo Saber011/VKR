@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using JWT.Core;
+using System.Threading.Tasks;
 
 namespace JWT.Interface
 {
