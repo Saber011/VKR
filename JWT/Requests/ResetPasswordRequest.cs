@@ -5,7 +5,7 @@ namespace JWT.Request
     /// <summary>
     /// Запрос на изменения пароля
     /// </summary>
-    public class ResetPasswordRequest
+    public sealed class ResetPasswordRequest
     {
         /// <summary>
         /// Индификатор пользвателя

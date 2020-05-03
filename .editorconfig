@@ -1,0 +1,31 @@
+﻿[*.cs]
+
+# BL0001: Component parameter should have public setters.
+dotnet_diagnostic.BL0001.severity = error
+
+# BL0004: Component parameter should be public.
+dotnet_diagnostic.BL0004.severity = warning
+
+# CA3075: Insecure DTD processing in XML
+dotnet_diagnostic.CA3075.severity = warning
+
+# CA1822: Member 'TryExecute' does not access instance data and can be marked as static
+dotnet_diagnostic.CA1822.severity = warning
+
+# BL0005: Component parameter should not be set outside of its component.
+dotnet_diagnostic.BL0005.severity = warning
+
+# CA1000: Do not declare static members on generic types
+dotnet_diagnostic.CA1000.severity = warning
+
+# EF1001: Internal EF Core API usage.
+dotnet_diagnostic.EF1001.severity = warning
+
+# CA3009: Review code for XML injection vulnerabilities
+dotnet_diagnostic.CA3009.severity = warning
+
+# CA3147: Mark Verb Handlers With Validate Antiforgery Token
+dotnet_diagnostic.CA3147.severity = warning
+
+# CA3077: Insecure Processing in API Design, XmlDocument and XmlTextReader
+dotnet_diagnostic.CA3077.severity = warning

@@ -1,3 +1,4 @@
+using JWT.Interface;
 using JWT.Models;
 using JWT.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,7 +16,7 @@ using System.Reflection;
 
 namespace JWT
 {
-    public class Startup
+    public sealed class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -54,6 +55,8 @@ namespace JWT
                                ValidateIssuerSigningKey = true,
                            };
                        });
+
+
             services.AddControllersWithViews();
             services.AddMemoryCache();
 
@@ -74,6 +77,15 @@ namespace JWT
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["GoogleClientId"];
+                googleOptions.ClientSecret = Configuration["GoogleClientSecret"];
+            }).AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["AppId"];
+                facebookOptions.AppSecret = Configuration["AppSecret"];
+            });
 
             //services.AddScoped<ExecuteService>();
             // configure DI for application services

@@ -108,8 +108,7 @@ namespace JWT.Service
         /// <summary>
         /// Crate passwrod hash string
         /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="password">Хеш пароля</param>
         public static string PasHas(string password)
         {
 

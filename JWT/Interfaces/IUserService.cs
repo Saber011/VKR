@@ -1,9 +1,8 @@
 ﻿using JWT.Models;
 using JWT.Request;
-using JWT.ViewModel;
 using System.Threading.Tasks;
 
-namespace JWT.Service
+namespace JWT.Interface
 {
     /// <summary>
     /// сервис для работы с пользователями

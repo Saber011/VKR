@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Роли
     /// </summary>
-    public class Role
+    public sealed class Role
     {
         /// <summary>
         /// ID роли

@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Задачи команд
     /// </summary>
-    public class ExercisesTeams
+    public sealed class ExercisesTeams
     {
         /// <summary>
         /// ID журнала задач команд

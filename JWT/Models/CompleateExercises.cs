@@ -6,7 +6,7 @@ namespace JWT.Models
     /// <summary>
     /// Журнал ролей
     /// </summary>
-    public class CompleateExercises
+    public sealed class CompleateExercises
     {
         /// <summary>
         /// ID Usera вторичный ключ связан с полем Id таблицы User
