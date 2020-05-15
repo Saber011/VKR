@@ -67,6 +67,17 @@ namespace JWT.Models
         /// </summary>
         public DbSet<ExercisesTeams> CompleateExercises { get; set; }
 
+
+
+
+
+        public DbSet<aUsers> aUsers { get; set; }
+        public DbSet<aTests> aTests { get; set; }
+        public DbSet<aSubjects> aSubjects { get; set; }
+        public DbSet<aHierarchySubjectsUsers> aHierarchySubjectsUsers { get; set; }
+        public DbSet<aExercises> aExercises { get; set; }
+        public DbSet<aCompleateExercises> aCompleateExercises { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
