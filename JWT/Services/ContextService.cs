@@ -87,7 +87,6 @@ namespace JWT.Service
             }
 
             return tasks.AnswerTask.Equals(result.output);
-
         }
 
         /// <inheritdoc/>
