@@ -47,5 +47,12 @@ namespace JWT.Interface
         /// <param name="request">параметры запроса</param>
         /// <returns>Возращает токен</returns>
         Task<dynamic> Login(UserRequest request);
+
+        /// <summary>
+        /// Получить пользователя
+        /// </summary>
+        /// <param name="login">логин пользователя</param>
+        /// <returns>Возращает токен</returns>
+        Task<UserModelRequest> GetUserByLoginAsync(string login);
     }
 }

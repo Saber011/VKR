@@ -7,10 +7,11 @@ namespace JWT.Models
     /// </summary>
     public sealed class aHierarchySubjectsUsers
     {
+        
         /// <summary>
         /// ID 
         /// </summary>
-        public int IdUser { get; set; }
+        public int? IdUser { get; set; }
        
         /// <summary>
         /// 
@@ -20,6 +21,21 @@ namespace JWT.Models
         /// <summary>
         /// 
         /// </summary>
-        public string HierarchyTestsUser { get; set; }
+        public int IdTest { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? IdParent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Rating { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Depth { get; set; }
     }
 }

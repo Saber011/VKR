@@ -71,7 +71,6 @@ namespace JWT.Models
 
 
 
-        public DbSet<aUsers> aUsers { get; set; }
         public DbSet<aTests> aTests { get; set; }
         public DbSet<aSubjects> aSubjects { get; set; }
         public DbSet<aHierarchySubjectsUsers> aHierarchySubjectsUsers { get; set; }
@@ -97,6 +96,12 @@ namespace JWT.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<aCompleateExercises>()
+       .HasNoKey();
+            modelBuilder.Entity<aHierarchySubjectsUsers>()
+       .HasNoKey();
+            modelBuilder.Entity<aHierarchySubjectsUsers>()
+.HasNoKey();
             // Создание альтернативных ключей
             modelBuilder.Entity<User>().HasAlternateKey(u => u.Login);
             modelBuilder.Entity<Exercises>().HasAlternateKey(u => u.TextTask);

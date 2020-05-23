@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 
 namespace JWT.NewApplogic
 {
+
     public class Graph
     {
 		private Node[] nodes;
 		public Graph(int nodesCount)
 		{
-			nodes = Enumerable.Range(0, nodesCount).Select(z => new Node(z)).ToArray();
+			nodes = Enumerable.Range(0, nodesCount).Select(z => new Node(z,0)).ToArray();
 		}
 
-		public int Length { get { return nodes.Length; } }
+		public int Length { get; set; }
 
 		public Node this[int index] { get { return nodes[index]; } }
 

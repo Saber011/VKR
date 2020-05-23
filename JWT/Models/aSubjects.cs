@@ -7,6 +7,7 @@ namespace JWT.Models
     /// </summary>
     public sealed class aSubjects
     {
+
         /// <summary>
         /// ID 
         /// </summary>
@@ -17,10 +18,5 @@ namespace JWT.Models
         /// 
         /// </summary>
         public string NameSubject { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string HierarchyTests { get; set; }
     }
 }

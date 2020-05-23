@@ -1,6 +1,8 @@
 using JWT.Interface;
+using JWT.Interfaces;
 using JWT.Models;
 using JWT.Service;
+using JWT.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -92,6 +94,7 @@ namespace JWT
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IContextService, ContextService>();
+            services.AddScoped<INewContextService, NewContextService>();
             services.TryAddScoped<ExecuteService>();
 
         }
