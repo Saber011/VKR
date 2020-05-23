@@ -32,11 +32,24 @@ namespace JWT.Controllers
         /// <response code = "200" > Успешное выполнение.</response>
         /// <response code = "204" > Контент не найден</response>
         /// <response code = "500" > Непредвиденная ошибка сервера.</response>
-        [Authorize]
         [HttpGet("GetUserById")]
         public async Task<ServiceResponse<UserModelRequest>> GetUser(int id)
         {
             return await _executeService.TryExecute(() => _userService.GetByIdAsync(id));
+        }
+
+        /// <summary>
+        /// Получить пользователя по логину
+        /// </summary>
+        /// <param name = "login" > Логин пользвателя</param>
+        /// <returns>Найденный пользватель</returns>
+        /// <response code = "200" > Успешное выполнение.</response>
+        /// <response code = "204" > Контент не найден</response>
+        /// <response code = "500" > Непредвиденная ошибка сервера.</response>
+        [HttpGet("GetUserByLogin")]
+        public async Task<ServiceResponse<UserModelRequest>> GetUserByLogin(string login)
+        {
+            return await _executeService.TryExecute(() => _userService.GetUserByLoginAsync(login));
         }
 
         /// <summary>

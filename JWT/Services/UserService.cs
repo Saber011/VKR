@@ -113,8 +113,9 @@ namespace JWT.Service
             var response = new
             {
                 access_token = encodedJwt,
-                username = identity.Name
-            };
+                username = identity.Name,
+                id =  _context.Users.FirstOrDefault(x => x.Login == request.Login).Id,
+        };
 
             return response;
         }
@@ -144,7 +145,6 @@ namespace JWT.Service
                     throw new AppException("Invalid username or password");
 
             if (person != null)
-
             {
                 var firstUserRoles = _context.UserRoles.FirstOrDefault(x => x.UserId == person.Id);
                 var roles = _context.Roles.FirstOrDefault(x => x.IdRole == firstUserRoles.RoleIdRole);
@@ -163,5 +163,9 @@ namespace JWT.Service
             return null;
         }
 
+        public async Task<UserModelRequest> GetUserByLoginAsync(string login)
+        {
+            return (UserModelRequest)await _context.Users.FirstOrDefaultAsync(x=>x.Login == login);
+        }
     }
 }

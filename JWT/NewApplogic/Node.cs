@@ -9,10 +9,13 @@ namespace JWT.NewApplogic
 	{
 		private readonly List<Node> incidentNodes = new List<Node>();
 		public readonly int NodeNumber;
+		public  int IdTest { get; set; }
+		public int Rating { get; set; }
 
-		public Node(int number)
+		public Node(int number, int rating)
 		{
 			NodeNumber = number;
+			Rating = rating;
 		}
 
 		public IEnumerable<Node> IncidentNodes
