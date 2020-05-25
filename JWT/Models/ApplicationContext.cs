@@ -96,12 +96,7 @@ namespace JWT.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<aCompleateExercises>()
-       .HasNoKey();
-            modelBuilder.Entity<aHierarchySubjectsUsers>()
-       .HasNoKey();
-            modelBuilder.Entity<aHierarchySubjectsUsers>()
-.HasNoKey();
+
             // Создание альтернативных ключей
             modelBuilder.Entity<User>().HasAlternateKey(u => u.Login);
             modelBuilder.Entity<Exercises>().HasAlternateKey(u => u.TextTask);

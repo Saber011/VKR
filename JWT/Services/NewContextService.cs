@@ -69,6 +69,7 @@ namespace JWT.Services
         {
             return new aHierarchySubjectsUsers
             {
+                Key = 0,
                 IdUser = null,
                 IdTest = tests.IdTest,
                 IdSubject = tests.IdSubject,
@@ -81,7 +82,8 @@ namespace JWT.Services
         public async Task<aTests> AddTest(aTests test, int depth)
         {
             _context.aTests.Add(test);
-            _context.aHierarchySubjectsUsers.Add(MapTest(test, depth));
+
+            _context.aHierarchySubjectsUsers.Add((MapTest(test, depth)));
 
             await _context.SaveChangesAsync();
 

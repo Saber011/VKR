@@ -198,9 +198,8 @@ namespace JWT.Controllers
         }
 
         /// <summary>
-        /// Получить все тесты
+        /// Получить все задачи
         /// </summary>
-        /// <returns>Возращает список всех команд</returns>
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response> 
@@ -212,7 +211,7 @@ namespace JWT.Controllers
         }
 
         /// <summary>
-        /// Получить тест по  id
+        /// Получить задачу по  id
         /// </summary>
         /// <param name="id">Индификатор команды</param>
         /// <response code="200">Успешное выполнение.</response>
@@ -226,7 +225,7 @@ namespace JWT.Controllers
         }
 
         /// <summary>
-        /// Удалить тест
+        /// Удалить задачу
         /// </summary>
         /// <param name="Id">Индификатор команды</param>
         /// <response code="200">Успешное выполнение.</response>
@@ -240,7 +239,7 @@ namespace JWT.Controllers
         }
 
         /// <summary>
-        /// Изменить информацию о тесте
+        /// Изменить информацию о задаче
         /// </summary>
         /// <param name="exercises"></param>
         /// <response code="200">Успешное выполнение.</response>

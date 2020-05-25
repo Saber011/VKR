@@ -46,6 +46,7 @@ namespace JWT.Controllers
         /// <response code = "200" > Успешное выполнение.</response>
         /// <response code = "204" > Контент не найден</response>
         /// <response code = "500" > Непредвиденная ошибка сервера.</response>
+        [Authorize]
         [HttpGet("GetUserByLogin")]
         public async Task<ServiceResponse<UserModelRequest>> GetUserByLogin(string login)
         {
@@ -71,6 +72,7 @@ namespace JWT.Controllers
         /// <response code="200">Успешное выполнение.</response>
         /// <response code="401">Данный запрос требует аутентификации.</response>
         /// <response code="500">Непредвиденная ошибка сервера.</response>
+        [Authorize]
         [HttpPost("DeleteUser")]
         public async Task<ServiceResponse<dynamic>> DeleteUser(int id)
         {
@@ -85,7 +87,7 @@ namespace JWT.Controllers
         /// <response code="500">Непредвиденная ошибка сервера.</response>
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ServiceResponse<dynamic>> Login([FromBody]UserRequest userRequest)
+        public async Task<ServiceResponse<dynamic>> Login(UserRequest userRequest)
         {
             return await _executeService.TryExecute(() => _userService.Login(userRequest));
         }

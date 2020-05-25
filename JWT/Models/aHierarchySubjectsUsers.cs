@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JWT.Models
 {
@@ -7,7 +8,14 @@ namespace JWT.Models
     /// </summary>
     public sealed class aHierarchySubjectsUsers
     {
-        
+
+        /// <summary>
+        /// ef
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Key { get; set; }
+
         /// <summary>
         /// ID 
         /// </summary>
