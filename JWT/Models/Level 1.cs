@@ -17,6 +17,11 @@ namespace JWT.Models
         /// <summary>
         /// 
         /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public int A { get; set; }
     }
