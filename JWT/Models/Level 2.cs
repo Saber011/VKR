@@ -15,6 +15,11 @@ namespace JWT.Models
         public int Level2Id { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
         /// "Название темы", хранит лвл юзера по этой теме
         /// </summary>
         [Required]
