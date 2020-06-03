@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 
 namespace JWT
 {
@@ -114,6 +115,7 @@ namespace JWT
             {
                 googleOptions.ClientId = Configuration["GoogleClientId"];
                 googleOptions.ClientSecret = Configuration["GoogleClientSecret"];
+                googleOptions.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/userinfo";
             }).AddFacebook(facebookOptions =>
             {
                 facebookOptions.AppId = Configuration["AppId"];

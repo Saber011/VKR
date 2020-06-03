@@ -1,6 +1,7 @@
 ﻿using JWT.Core;
 using JWT.Interface;
 using JWT.Models;
+using JWT.Requests;
 using JWT.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -101,6 +102,63 @@ namespace JWT.Controllers
         public async Task<ServiceResponse<dynamic>> EditTeams([FromBody]Team team)
         {
             return await _executeService.TryExecute(() => _teamsService.EditAsync(team));
+        }
+
+        /// <summary>
+        /// Добавить участника в команду
+        /// </summary>
+        /// <param name="team">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
+        [HttpPost]
+        [Route("AddUserToTeam")]
+        public async Task<ServiceResponse<dynamic>> AddUserToTeam([FromBody] ActionTeamRequest team)
+        {
+            return await _executeService.TryExecute(() => _teamsService.AddUserToTeam(team.IdTeam, team.IdUser));
+        }
+
+
+        /// <summary>
+        /// Получить все команды пользователя
+        /// </summary>
+        /// <param name="team">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
+        [HttpGet]
+        [Route("GetUserTeams")]
+        public async Task<ServiceResponse<UsersTeams[]>> GetUserTeams(int IdUser)
+        {
+            return await _executeService.TryExecute(() => _teamsService.GetUsersTeams(IdUser));
+        }
+
+        /// <summary>
+        /// Получить всех участников команды
+        /// </summary>
+        /// <param name="idTeam">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
+        [HttpGet]
+        [Route("GetTeamUser")]
+        public async Task<ServiceResponse<UsersTeams[]>> GetTeamUser(int idTeam)
+        {
+            return await _executeService.TryExecute(() => _teamsService.GetTeamUser(idTeam));
+        }
+
+        /// <summary>
+        /// Получить всех участников команды
+        /// </summary>
+        /// <param name="idTeam">Индификатор команды</param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
+        [HttpPost]
+        [Route("RemovUserToTeam")]
+        public async Task<ServiceResponse<dynamic>> RemovUserToTeam([FromBody] ActionTeamRequest team)
+        {
+            return await _executeService.TryExecute(() => _teamsService.RemovUserToTeam(team.IdTeam, team.IdUser));
         }
     }
 }

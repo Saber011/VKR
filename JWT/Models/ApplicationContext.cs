@@ -67,6 +67,8 @@ namespace JWT.Models
         /// </summary>
         public DbSet<ExercisesTeams> CompleateExercises { get; set; }
 
+        public DbSet<UsersTeams> UsersTeams { get; set; }
+
 
 
 
@@ -96,6 +98,11 @@ namespace JWT.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UsersTeams>((pc =>
+            {
+                pc.HasNoKey();
+                pc.ToView("UsersTeams");
+            }));
 
             // Создание альтернативных ключей
             modelBuilder.Entity<User>().HasAlternateKey(u => u.Login);

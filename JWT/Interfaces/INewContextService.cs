@@ -135,5 +135,11 @@ namespace JWT.Interfaces
         /// Получить всю иерархию пользователя
         /// </summary>
         Task<aHierarchySubjectsUsers[]> GetHierarchySubjectsUsers(int idUser);
+
+        /// <summary>
+        /// Получить выполнение задачи
+        /// </summary>
+        /// <param name="idUser"></param>
+        public Task<aCompleateExercises[]> GetCompleteTask(int idUser);
     }
 }

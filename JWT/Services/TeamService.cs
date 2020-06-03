@@ -4,6 +4,7 @@ using JWT.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace JWT.Service
@@ -18,7 +19,7 @@ namespace JWT.Service
         /// <inheritdoc/>
         public async Task<List<Team>> GetAllTeamsAsync()
         {
-            return await _context.Teams.ToListAsync();
+            return await _context.Teams.OrderBy(x => x.TeamRating).ToListAsync();
         }
 
         private bool CanAddOrUpdateTeam(Team team)
@@ -79,6 +80,43 @@ namespace JWT.Service
         public async Task<Team> FindTeamAsync(int IdTeam)
         {
             return await _context.Teams.FindAsync(IdTeam);
+        }
+
+        /// <inheritdoc/>
+        public async Task<dynamic> AddUserToTeam(int IdTeam, int idUser)
+        {
+            _context.UserTeams.Add(new UserTeams { UserId = idUser, TeamIdTeam = IdTeam });
+            await _context.SaveChangesAsync();
+
+            return new
+            {
+                Messeges = "Пользователь успешно добавлен в команду"
+            };
+        }
+
+
+        /// <inheritdoc/>
+        public async Task<UsersTeams[]> GetUsersTeams(int idUser)
+        {
+            return await _context.UsersTeams.Where(x => x.Id == idUser).ToArrayAsync();
+        }
+
+        /// <inheritdoc/>
+        public async Task<UsersTeams[]> GetTeamUser(int idTeam)
+        {
+            return await _context.UsersTeams.Where(x => x.IdTeam == idTeam).ToArrayAsync();
+        }
+
+        /// <inheritdoc/>
+        public async Task<dynamic> RemovUserToTeam(int IdTeam, int idUser)
+        {
+            _context.UserTeams.Remove(new UserTeams { UserId = idUser, TeamIdTeam = IdTeam });
+            await _context.SaveChangesAsync();
+
+            return new
+            {
+                Messeges = "Пользователь успешно удален из команды"
+            };
         }
     }
 }
