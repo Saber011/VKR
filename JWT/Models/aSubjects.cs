@@ -2,22 +2,21 @@
 
 namespace JWT.Models
 {
-
     /// <summary>
-    /// 1 Уровень тем, наивысший
+    /// 
     /// </summary>
-    public sealed class Level1
+    public sealed class aSubjects
     {
+
         /// <summary>
-        /// ID юзера
+        /// ID 
         /// </summary>
         [Key]
-        public int Level1Id { get; set; }
-
+        public int IdSubject { get; set; }
+       
         /// <summary>
         /// 
         /// </summary>
-        [Required]
-        public int A { get; set; }
+        public string NameSubject { get; set; }
     }
 }

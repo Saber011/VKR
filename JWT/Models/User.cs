@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Юзеры
     /// </summary>
-    public class User
+    public sealed class User
     {
         /// <summary>
         /// ID юзера

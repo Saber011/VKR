@@ -1,6 +1,7 @@
-﻿using JWT.Models;
+﻿using JWT.Exceptions;
+using JWT.Interface;
+using JWT.Models;
 using JWT.Request;
-using JWT.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -16,7 +17,7 @@ namespace JWT.Service
 {
 
     /// <inheritdoc/>
-    public class UserService : IUserService
+    public sealed class UserService : IUserService
     {
         private ApplicationContext _context;
         private static readonly Encoding encoding = Encoding.UTF8;
@@ -28,7 +29,7 @@ namespace JWT.Service
 
         /// <inheritdoc/>
         public async Task<User> CreateAsync(UserRequest user)
-        { 
+        {
             // validation
             if (string.IsNullOrWhiteSpace(user.Password))
                 throw new AppException("Password is required");
@@ -39,13 +40,6 @@ namespace JWT.Service
             user.Password = SecurePasswordHasher.PasHas(user.Password);
             var userModel = new User() { Login = user.Login, Password = user.Password };
             _context.Users.Add(userModel);
-            _context.SaveChanges();
-            var users = _context.Users.FirstOrDefault(x => x.Login == user.Login);
-            // ToDo create triger
-            _context.UserRoles.Add(new UserRoles { UserId = users.Id });
-            _context.Level1.Add(new Level1 { });
-            _context.Level2.Add(new Level2 { });
-            _context.Level3.Add(new Level3 { });
             await _context.SaveChangesAsync();
 
             return userModel;
@@ -119,8 +113,9 @@ namespace JWT.Service
             var response = new
             {
                 access_token = encodedJwt,
-                username = identity.Name
-            };
+                username = identity.Name,
+                id =  _context.Users.FirstOrDefault(x => x.Login == request.Login).Id,
+        };
 
             return response;
         }
@@ -150,7 +145,6 @@ namespace JWT.Service
                     throw new AppException("Invalid username or password");
 
             if (person != null)
-
             {
                 var firstUserRoles = _context.UserRoles.FirstOrDefault(x => x.UserId == person.Id);
                 var roles = _context.Roles.FirstOrDefault(x => x.IdRole == firstUserRoles.RoleIdRole);
@@ -169,5 +163,9 @@ namespace JWT.Service
             return null;
         }
 
+        public async Task<UserModelRequest> GetUserByLoginAsync(string login)
+        {
+            return (UserModelRequest)await _context.Users.FirstOrDefaultAsync(x=>x.Login == login);
+        }
     }
 }

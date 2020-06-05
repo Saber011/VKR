@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JWT.Core;
+using JWT.Enum;
+using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -8,7 +10,7 @@ namespace JWT.Service
     /// Вспомогательный класс, который позволяет централизовано перехыватывать ошибки и оборачивать их
     /// в корректный ответ <see cref="ServiceResponse{T}"/>
     /// </summary>
-    public class ExecuteService
+    public sealed class ExecuteService
     {
         /// <summary>
         /// Выполнить какое либо действие и обернуть резудьтат в <see cref="ServiceResponse{T}"/>
@@ -25,6 +27,7 @@ namespace JWT.Service
 
                 result.Content = content;
                 result.ResponseInfo.Status = ResponseStatus.Success;
+
                 return result;
             }
             catch (ValidationException e)
@@ -33,12 +36,17 @@ namespace JWT.Service
                 result.ResponseInfo.ErrorMessage = e.Message;
                 result.ResponseInfo.ValidationErrors = e.ErrorsList;
                 result.ResponseInfo.ErrorCode = ErrorCode.FailedValidation;
+
                 return result;
             }
 
-            catch (HttpResponseException)
+            catch (HttpResponseException e)
             {
-                throw;
+                result.ResponseInfo.Status = ResponseStatus.ValidationError;
+                result.ResponseInfo.ErrorMessage = e.Message;
+                result.ResponseInfo.ErrorCode = ErrorCode.FailedValidation;
+
+                return result;
             }
 
             catch (Exception e)
@@ -46,6 +54,7 @@ namespace JWT.Service
                 result.ResponseInfo.Status = ResponseStatus.Error;
                 result.ResponseInfo.ErrorMessage = e.Message;
                 result.ResponseInfo.ErrorCode = ErrorCode.Unclassified;
+
                 return result;
             }
         }

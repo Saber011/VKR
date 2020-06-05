@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace JWT.Models
 {
-
     /// <summary>
     /// Работа с бд
     /// </summary>
-    public class ApplicationContext : DbContext
+    public sealed class ApplicationContext : DbContext
     {
-
         /// <summary>
-        /// Юзеры
+        /// Юзеры 
         /// </summary>
         public DbSet<User> Users { get; set; }
 
@@ -63,14 +62,41 @@ namespace JWT.Models
         /// Задачи от тренера
         /// </summary>
         public DbSet<ExercisesTeams> ExercisesTeamss { get; set; }
+        /// <summary>
+        /// Журнал решенных пользовательских задач
+        /// </summary>
+        public DbSet<ExercisesTeams> CompleateExercises { get; set; }
+
+
+
+
+
+        public DbSet<aTests> aTests { get; set; }
+        public DbSet<aSubjects> aSubjects { get; set; }
+        public DbSet<aHierarchySubjectsUsers> aHierarchySubjectsUsers { get; set; }
+        public DbSet<aExercises> aExercises { get; set; }
+        public DbSet<aCompleateExercises> aCompleateExercises { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
             Database.EnsureCreated();
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+        }
+
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+
+        });
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             // Создание альтернативных ключей
             modelBuilder.Entity<User>().HasAlternateKey(u => u.Login);
             modelBuilder.Entity<Exercises>().HasAlternateKey(u => u.TextTask);
@@ -86,6 +112,7 @@ namespace JWT.Models
             modelBuilder.Entity<Level3>().Property(u => u.E).HasDefaultValue(0);
             modelBuilder.Entity<Level3>().Property(u => u.F).HasDefaultValue(0);
             modelBuilder.Entity<Level3>().Property(u => u.G).HasDefaultValue(0);
+            modelBuilder.Entity<Team>().Property(u => u.TeamRating).HasDefaultValue(0);
         }
 
     }

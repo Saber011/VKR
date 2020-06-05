@@ -1,4 +1,6 @@
-﻿using JWT.Models;
+﻿using JWT.Exceptions;
+using JWT.Interface;
+using JWT.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 namespace JWT.Service
 {
     /// <inheritdoc/>
-    public class TeamService : ITeamService
+    public sealed class TeamService : ITeamService
     {
         private readonly ApplicationContext _context;
         public TeamService(ApplicationContext _applicationContext) =>
@@ -22,7 +24,8 @@ namespace JWT.Service
         private bool CanAddOrUpdateTeam(Team team)
         {
             var count = _context.Teams.Where(x => x.TeamName == team.TeamName).Count();
-            return count > 0 ? true : false;
+
+            return count > 0;
         }
 
         /// <inheritdoc/>

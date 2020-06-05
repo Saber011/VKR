@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JWT.Service
+namespace JWT.Interface
 {
-
     /// <summary>
     /// Сервис для работы с командами
     /// </summary>

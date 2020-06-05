@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Команды
     /// </summary>
-    public class Team
+    public sealed class Team
     {
         /// <summary>
         /// ID команды
@@ -20,12 +20,17 @@ namespace JWT.Models
         public string TeamName { get; set; }
 
         /// <summary>
-        /// ID капитана команды, вторичный ключ связан с полем Id таблицы Role
+        /// ID капитана команды, вторичный ключ связан с полем Id таблицы User
         /// </summary>
         public int CapId { get; set; }
         /// <summary>
-        /// ID тренера команды, вторичный ключ связан с полем Id таблицы Role
+        /// ID тренера команды, вторичный ключ связан с полем Id таблицы User
         /// </summary>
         public int CoachId { get; set; }
+
+        /// <summary>
+        /// Рейтинг команды
+        /// </summary>
+        public int TeamRating { get; set; }
     }
 }

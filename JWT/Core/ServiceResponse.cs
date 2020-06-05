@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JWT.Enum;
+using System.ComponentModel.DataAnnotations;
 
-namespace JWT
+namespace JWT.Core
 {
     /// <summary>
     /// Generic HTTP response

@@ -6,7 +6,7 @@ namespace JWT.Request
     /// <summary>
     /// Запрос пользователя
     /// </summary>
-    public class UserModelRequest
+    public sealed class UserModelRequest
     {
         /// <summary>
         /// ID юзера

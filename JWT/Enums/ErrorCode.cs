@@ -1,4 +1,4 @@
-﻿namespace JWT
+﻿namespace JWT.Enum
 {
     /// <summary>
     /// Коды ошибок

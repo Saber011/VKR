@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Темы
     /// </summary>
-    public class Topics
+    public sealed class Topics
     {
         /// <summary>
         /// ID Темы

@@ -1,9 +1,8 @@
 ﻿using JWT.Models;
 using JWT.Request;
-using JWT.ViewModel;
 using System.Threading.Tasks;
 
-namespace JWT.Service
+namespace JWT.Interface
 {
     /// <summary>
     /// сервис для работы с пользователями
@@ -48,5 +47,12 @@ namespace JWT.Service
         /// <param name="request">параметры запроса</param>
         /// <returns>Возращает токен</returns>
         Task<dynamic> Login(UserRequest request);
+
+        /// <summary>
+        /// Получить пользователя
+        /// </summary>
+        /// <param name="login">логин пользователя</param>
+        /// <returns>Возращает токен</returns>
+        Task<UserModelRequest> GetUserByLoginAsync(string login);
     }
 }

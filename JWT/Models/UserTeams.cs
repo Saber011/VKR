@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// Журнал привязки юзера к команде
     /// </summary>
-    public class UserTeams
+    public sealed class UserTeams
     {
         /// <summary>
         /// ID журнала

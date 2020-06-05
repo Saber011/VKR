@@ -5,7 +5,7 @@ namespace JWT.Models
     /// <summary>
     /// 2 Уровень тем, средний
     /// </summary>
-    public class Level2
+    public sealed class Level2
     {
 
         /// <summary>
