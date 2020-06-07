@@ -3,7 +3,8 @@
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-	  <LangVersion>preview</LangVersion>
+	  <Platforms>AnyCPU;x64</Platforms>
+	  <LangVersion>8</LangVersion>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>582211d3-59a9-4ce8-821d-bb87f2e68454</UserSecretsId>
   </PropertyGroup>
