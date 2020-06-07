@@ -53,6 +53,6 @@ namespace JWT.Interface
         /// <summary>
         /// Удалить участника из команды
         /// </summary>
-        public Task<dynamic> RemovUserToTeam(int IdTeam, int idUser)
+        public Task<dynamic> RemovUserToTeam(int IdTeam, int idUser);
     }
 }

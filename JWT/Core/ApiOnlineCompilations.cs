@@ -9,7 +9,7 @@ namespace JWT.Core
     /// <summary>
     /// Вспомогательнй класс для работы с онлайн компиляторами
     /// </summary>
-    public class ApiOnlineCompilations
+    public static class ApiOnlineCompilations
     {
         const string clientId = "a612afdc8c9bd742ac181cd36a07d7cc";
         const string clientSecret = "3023cece709acd5d59ee104fc668b4b46587dbdb10911a14e6c83f7b668a4294";

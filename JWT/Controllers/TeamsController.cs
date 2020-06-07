@@ -148,7 +148,7 @@ namespace JWT.Controllers
         }
 
         /// <summary>
-        /// Получить всех участников команды
+        /// Удалить участника команнды
         /// </summary>
         /// <param name="idTeam">Индификатор команды</param>
         /// <response code="200">Успешное выполнение.</response>

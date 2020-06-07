@@ -19,7 +19,7 @@ namespace JWT.Service
         /// <inheritdoc/>
         public async Task<List<Team>> GetAllTeamsAsync()
         {
-            return await _context.Teams.OrderBy(x => x.TeamRating).ToListAsync();
+            return await _context.Teams.OrderByDescending(x => x.TeamRating).ToListAsync();
         }
 
         private bool CanAddOrUpdateTeam(Team team)
