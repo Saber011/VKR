@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JWT.Program">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Startup">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ApiOnlineCompilations">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Core\ApiOnlineCompilations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ErrorsList">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Core\ErrorsList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ResponceCompile">
+    <Position X="7.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgACAAAAAAAAAAAACIAAAA=</HashCode>
+      <FileName>Core\ResponceCompile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ResponseInfo">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAEAAAAAAAAAAAAAAAAAAgAAAEAAAAAAIAAAAA=</HashCode>
+      <FileName>Core\ResponseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ServiceResponse&lt;T&gt;">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ServiceResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Core.ValidationException">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAgAAAAA=</HashCode>
+      <FileName>Core\ValidationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Exceptions.AppException">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\AppException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Migrations.Migrate_context">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20200326181155_MigrateDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Migrations.ApplicationContextModelSnapshot">
+    <Position X="11" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.aCompleateExercises">
+    <Position X="14.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAQAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\aCompleateExercises.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.aExercises">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAACAAAAAAAAAAACAAgEIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\aExercises.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.aHierarchySubjectsUsers">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAACAAAAAQAAAAAAAAAAAAIAAEgAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\aHierarchySubjectsUsers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.ApplicationContext">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABCDIAAQAAAAAAAAEAAACAFgAAACgDAAAAACEAAAA=</HashCode>
+      <FileName>Models\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.aSubjects">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\aSubjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.aTests">
+    <Position X="4" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Models\aTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.AuthOptions">
+    <Position X="12.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQRAAAAAQAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AuthOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.CompleateExercises">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAgAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CompleateExercises.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Exercises">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgCAAAQBAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Exercises.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.ExercisesTeams">
+    <Position X="14.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAIAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ExercisesTeams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Level1">
+    <Position X="7.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Level 1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Level2">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAA=</HashCode>
+      <FileName>Models\Level 2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Level3">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAA=</HashCode>
+      <FileName>Models\Level 3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Role">
+    <Position X="4" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Team">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAACAAACBAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.Topics">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAIAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAA=</HashCode>
+      <FileName>Models\Topics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.User">
+    <Position X="5.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.UserRoles">
+    <Position X="5.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\UserRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Models.UserTeams">
+    <Position X="11" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserTeams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.NewApplogic.Graph">
+    <Position X="18" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAACAAAAABAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>NewApplogic\Graph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.NewApplogic.Node">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAIAABAAIAAUAAAAAAAAAAgE=</HashCode>
+      <FileName>NewApplogic\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Request.CheackTaskRequest">
+    <Position X="16.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACCAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\CheackTaskRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Request.ResetPasswordRequest">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\ResetPasswordRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Request.UserModelRequest" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Requests\UserModelRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Request.UserRequest">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Requests\UserRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Service.ContextService" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAAAAAAAAABAAAAAAAAAAAAAAAAAiAAQAAAIAAIMA=</HashCode>
+      <FileName>Services\ContextService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JWT.Service.ExecuteService">
+    <Position X="16.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ExecuteService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Service.SecurePasswordHasher">
+    <Position X="2.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABIEAQAAgABAAAAAAAAAAAAAAAAAAABAAAg=</HashCode>
+      <FileName>Services\SecurePasswordHasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWT.Service.TeamService" BaseTypeListCollapsed="true">
+    <Position X="11" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAgACEAAAIAAAII=</HashCode>
+      <FileName>Services\TeamService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JWT.Service.UserService" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIBAAAAAAAAAAAAAAEAIAACAAQAJAAIIA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JWT.Services.NewContextService" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JQACgAAAAAAARAAJBBBAIACAARAAEAgSAAIgAAAAEAA=</HashCode>
+      <FileName>Services\NewContextService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="JWT.Interface.IContextService">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAQAAAIAAIMA=</HashCode>
+      <FileName>Interfaces\IContextService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JWT.Interface.IErrorService">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IErrorService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JWT.Interface.ITeamService">
+    <Position X="9.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAIAAAII=</HashCode>
+      <FileName>Interfaces\ITeamService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JWT.Interface.IUserService">
+    <Position X="18" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAQAJAAIIA=</HashCode>
+      <FileName>Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JWT.Interfaces.INewContextService">
+    <Position X="18" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JQAAgAAAAAAAQAAJBBAAIACAARAAEAASAAIgAAAAAAA=</HashCode>
+      <FileName>Interfaces\INewContextService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="JWT.Enum.ErrorCode">
+    <Position X="9.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAgAEAgAQAA=</HashCode>
+      <FileName>Enums\ErrorCode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JWT.Enum.Rating">
+    <Position X="14.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Enums\Formular.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JWT.Enum.ResponseStatus">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\ResponseStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -87,7 +87,7 @@ namespace JWT.Controllers
         /// <response code="500">Непредвиденная ошибка сервера.</response>
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ServiceResponse<dynamic>> Login(UserRequest userRequest)
+        public async Task<ServiceResponse<dynamic>> Login([FromBody]UserRequest userRequest)
         {
             return await _executeService.TryExecute(() => _userService.Login(userRequest));
         }
@@ -113,7 +113,7 @@ namespace JWT.Controllers
         /// <response code="500">Непредвиденная ошибка сервера.</response>
         [AllowAnonymous]
         [HttpPost("resertPassword")]
-        public async Task<ServiceResponse<dynamic>> ResetPassword([FromBody] ResetPasswordRequest request)
+        public async Task<ServiceResponse<dynamic>> ResetPassword([FromBody]ResetPasswordRequest request)
         {
             return await _executeService.TryExecute(() => _userService.ResetPasswordAsync(request.Id, request.NewPasswrod));
         }

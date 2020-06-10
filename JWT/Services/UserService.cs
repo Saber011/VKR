@@ -79,11 +79,12 @@ namespace JWT.Service
         /// <inheritdoc/>
         public async Task<dynamic> ResetPasswordAsync(int id, string newPassword)
         {
-            var user = _context.Users.Find(id);
+            var user = await _context.Users.FirstOrDefaultAsync(x=> x.Id == id);
             if (user == null)
             {
-                throw new AppException("Не существует пользователя с таким индификатором");
+                throw new AppException("Не существует пользователя с таким идетификатором");
             }
+
             user.Password = SecurePasswordHasher.PasHas(newPassword);
             _context.Users.Update(user);
             await _context.SaveChangesAsync();

@@ -278,5 +278,19 @@ namespace JWT.Controllers
         {
             return await _executeService.TryExecute(() => _newService.GetHierarchySubjectsUsers(idUser));
         }
+
+        /// <summary>
+        /// Выполненеые задачи
+        /// </summary>
+        /// <param name="idUser"></param>
+        /// <response code="200">Успешное выполнение.</response>
+        /// <response code="401">Данный запрос требует аутентификации.</response>
+        /// <response code="500">Непредвиденная ошибка сервера.</response> 
+        [HttpGet]
+        [Route("GetCompleteTask")]
+        public async Task<ServiceResponse<aCompleateExercises[]>> GetCompleteTask(int idUser)
+        {
+            return await _executeService.TryExecute(() => _newService.GetCompleteTask(idUser));
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace JWT.Services
         public async Task<aTests> AddTest(aTests test, int depth)
         {
             _context.aTests.Add(test);
-
+            await _context.SaveChangesAsync();
             _context.aHierarchySubjectsUsers.Add((MapTest(test, depth)));
 
             await _context.SaveChangesAsync();
@@ -274,6 +274,12 @@ namespace JWT.Services
         public async Task<aHierarchySubjectsUsers[]> GetHierarchySubjectsUsers(int idUser)
         {
             return await _context.aHierarchySubjectsUsers.Where(x => x.IdUser == idUser).ToArrayAsync();
+        }
+
+        /// <inheritdoc/>
+        public async Task<aCompleateExercises[]> GetCompleteTask(int idUser)
+        {
+            return await _context.aCompleateExercises.Where(x => x.IdUser == idUser).ToArrayAsync();
         }
     }
 }
