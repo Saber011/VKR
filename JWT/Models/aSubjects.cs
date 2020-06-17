@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JWT.Models
 {
@@ -12,6 +13,7 @@ namespace JWT.Models
         /// ID 
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdSubject { get; set; }
        
         /// <summary>
